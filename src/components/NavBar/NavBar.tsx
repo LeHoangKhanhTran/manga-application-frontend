@@ -32,13 +32,13 @@ export default function NavBar({ onClose }: NavBarProps) {
         home.style.background = "var(--primary-btn-color)"
         let elements = Array.from(listItems);
         elements.push(home)
-        function changeStyle (x: HTMLElement, ev: MouseEvent) {
+        function changeStyle (x: HTMLElement, _ev: MouseEvent) {
             Array.from(elements).forEach(item => {
                 item.style.background = "";
             })
             x.style.background = "var(--primary-btn-color)";
         }
-        const handleClick: (this: HTMLElement, ev: MouseEvent) => any = function (this: HTMLElement, ev: MouseEvent) {
+        const handleClick: (this: HTMLElement, _ev: MouseEvent) => any = function (this: HTMLElement, ev: MouseEvent) {
             changeStyle(this, ev); 
         };
         Array.from(elements).forEach(element => {

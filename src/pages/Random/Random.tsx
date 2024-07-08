@@ -1,9 +1,7 @@
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Container, Spinner } from "./Random.style";
-import { useNavigate } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
-import { useStyleSheetContext } from "styled-components/dist/models/StyleSheetManager";
+
 interface RandomProps {
     isNavBarHidden: boolean
 }

@@ -1,7 +1,7 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import SlideItem from "../SlideItem/SlideItem";
 import { Container } from "./Slider.style";
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Title } from "../../pages/Title/Title";
 
 interface SliderProps {
@@ -30,7 +30,7 @@ export default function Slider({ isNavBarHidden, index } : SliderProps) {
         const fetch = async() => {
             try {
                 const response: AxiosResponse = await axios.get('https://localhost:7245/api/manga/list?numberOfItem=5');
-                setItems(prev => response.data)
+                setItems(_prev => response.data)
             }
             catch (error) {
                 console.log(error)

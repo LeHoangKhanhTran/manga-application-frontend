@@ -17,7 +17,7 @@ export default function TopRated({ isNavBarHidden }: TopRatedProps) {
             try {
                 const response = await axios.get('https://localhost:7245/api/manga/top-rated?numberOfItem=9');
                 if (response.data) {
-                    setData(prev => response.data)
+                    setData(_prev => response.data)
                 }
             }
             catch(error) {

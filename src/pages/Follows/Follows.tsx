@@ -3,7 +3,7 @@ import { ReactComponent as BackArrow } from '../../assets/back-arrow.svg'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { User } from "../../App";
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import ProfileItem from "../../components/ProfileItem/ProfileItem";
 interface FollowsProps {
     isNavBarHidden: boolean
@@ -15,7 +15,7 @@ export default function Follows({ isNavBarHidden }: FollowsProps) {
         const getUser = async() => {
             try {
                 const response: AxiosResponse = await axios.get('https://localhost:7245/api/user/me', { withCredentials: true})
-                setUser(prev => response.data)
+                setUser(_prev => response.data)
             }
             catch(error) {
                 console.log(error)

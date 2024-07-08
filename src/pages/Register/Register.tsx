@@ -1,9 +1,8 @@
 import { Container } from "../Login/Login.style"
 import loginImg from "../../assets/mdex-login-key.png"
-import { InputField } from "../../components/Input/Input.style"
 import { Card } from "../../components/Card/AuthCard.style"
 import Input from "../../components/Input/Input"
-import { useState, ChangeEvent, ButtonHTMLAttributes } from "react"
+import { useState, ChangeEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios, { AxiosError, AxiosResponse } from "axios"
 
@@ -34,7 +33,7 @@ export default function Register() {
     async function register(e : React.MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
       if (registerData['password'] !== registerData['confirmPassword']) {
-        setError(prev => 'Password is incorrect.');
+        setError(_prev => 'Password is incorrect.');
         return;
       }
       try {
@@ -52,7 +51,7 @@ export default function Register() {
       catch (error) {
         const message = ((error as AxiosError).response?.data as string).split('.')[1].split(':')[1];
         console.log(message)
-        setError(prev => message);
+        setError(_prev => message);
       }
     }
     async function handleClick(e : React.MouseEvent<HTMLButtonElement>) {

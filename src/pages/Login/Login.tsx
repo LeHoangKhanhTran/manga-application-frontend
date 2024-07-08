@@ -1,10 +1,10 @@
 import { Container} from "./Login.style";
 import { Card } from "../../components/Card/AuthCard.style";
 import loginImg from '../../assets/mdex-login-key.png'
-import { ChangeEvent,  EventHandler,  useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
-import axios, {AxiosError, AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 import { User, useUserContext } from "../../App";
 {}
 interface LoginData {
@@ -52,7 +52,7 @@ export default function Login() {
         const response: AxiosResponse = await axios.get<User>("https://localhost:7245/api/user/me", { withCredentials: true});
         if (response.data) {
           console.log(response);
-          setUser(prev => response.data)
+          setUser(_prev => response.data)
           navigate("/")
         }
       }

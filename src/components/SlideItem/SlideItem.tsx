@@ -2,7 +2,6 @@ import TagContainer from "../TagContainer/TagContainer"
 import { Container } from "./SlideItem.style"
 import { Title } from "../../pages/Title/Title"
 import { splitParagraph, transformLongText } from "../../util";
-import { useEffect, useLayoutEffect, useRef } from "react";
 interface SlideItemProps {
     isNavBarHidden: boolean,
     index: number,

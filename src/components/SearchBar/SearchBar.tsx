@@ -35,20 +35,20 @@ export default function SearchBar({ isNavBarHidden} : SearchBarProps) {
     const [mangaResults, setMangaResults] = useState<MangaResult[]>([]);
     const [authorResults, setAuthorResults] = useState<AuthorResult[]>([]);
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(prev => e.target.value)
+        setSearchTerm(_prev => e.target.value)
         getSearchResult(e.target.value);
     }
     async function getSearchResult(term: string) {
         if (term.length > 0) {
             const manga: AxiosResponse<MangaResult[]> = await axios.get<MangaResult[]>("https://localhost:7245/api/manga/search", {params: {title: term}})
-            setMangaResults(prev => manga.data);
+            setMangaResults(_prev => manga.data);
             const authors: AxiosResponse<AuthorResult[]> = await axios.get<AuthorResult[]>("https://localhost:7245/api/author/search", {params: {name: term}})
-            setAuthorResults(prev => authors.data)
+            setAuthorResults(_prev => authors.data)
         }
     }
     function handleItemClick() {
-        setSearchTerm(prev => "")
-        setIsFocused(prev => false)
+        setSearchTerm(_prev => "")
+        setIsFocused(_prev => false)
     }
     return (
         <Container isNavBarHidden={isNavBarHidden} isFocused={isFocused}>

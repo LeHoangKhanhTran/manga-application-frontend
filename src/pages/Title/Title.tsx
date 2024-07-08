@@ -5,7 +5,7 @@ import { ReactComponent as StarIcon } from "../../assets/star.svg";
 import { ReactComponent as EyeIcon } from "../../assets/eye.svg";
 import { ReactComponent as FollowedIcon } from "../../assets/followed.svg"
 import { useEffect, useState } from "react";
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { splitParagraph } from "../../util";
 import { useUserContext } from "../../App";
 import { getUser } from "../../App";
@@ -68,10 +68,10 @@ export default function Title({ isNavBarHidden } : TitleProps) {
     useEffect(() => {
         const rating = user?.userRatings?.find(rating => rating.mangaId === id)
         if (rating) {
-            setUserScore(prev => rating.score)
+            setUserScore(_prev => rating.score)
         }
-        else {setUserScore(prev => 0)}
-        setIsFollowed(prev => user?.mangaFollows?.find(mangaId => mangaId === id) !== undefined)
+        else {setUserScore(_prev => 0)}
+        setIsFollowed(_prev => user?.mangaFollows?.find(mangaId => mangaId === id) !== undefined)
     }, [user, id])
     
     const rateManga = async (score: number) => {
@@ -81,11 +81,11 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         const data = {
             userId: user?.id,
             score: score,
-            previousScore: user?.userRatings?.find(rating => rating.mangaId === id) ? user?.userRatings?.find(rating => rating.mangaId === id)?.score : 0
+            _previousScore: user?.userRatings?.find(rating => rating.mangaId === id) ? user?.userRatings?.find(rating => rating.mangaId === id)?.score : 0
         }
         try {
             const response: AxiosResponse = await axios.post(`https://localhost:7245/api/manga/${id}/rating`, data);
-            setRatingScore(prev => response.data['updatedRating']);
+            setRatingScore(_prev => response.data['updatedRating']);
             console.log(ratingScore)
             getUser(setUser);
         }
@@ -93,7 +93,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
             console.log(error)
         }
         finally {
-            setRateActive(prev => false)
+            setRateActive(_prev => false)
         }
     }
     const removeRate = async () => {
@@ -106,14 +106,14 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         }
         try {
             const response: AxiosResponse = await axios.post(`https://localhost:7245/api/manga/${id}/remove-rating`, data);
-            setRatingScore(prev => response.data['updatedRating'])
+            setRatingScore(_prev => response.data['updatedRating'])
             getUser(setUser);
         }
         catch(error) {
             console.log(error)
         }
         finally {
-            setRateActive(prev => false)
+            setRateActive(_prev => false)
         }
     }
 
@@ -123,8 +123,8 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         }
         try {
             const response: AxiosResponse = await axios.post(`https://localhost:7245/api/manga/${id}/${follow ? 'follow' : 'unfollow'}`, {userId: user?.id})
-            setIsFollowed(prev => follow)
-            setFollow(prev => response.data['updatedFollow'])
+            setIsFollowed(_prev => follow)
+            setFollow(_prev => response.data['updatedFollow'])
         }
         catch(error)
         {

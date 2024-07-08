@@ -1,6 +1,6 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import GlobalStyle, { Main, MainContent } from './GlobalStyle'
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
@@ -42,7 +42,7 @@ export async function getUser(setUser: React.Dispatch<React.SetStateAction<User 
   try {
     const response: AxiosResponse = await axios.get<User>("https://localhost:7245/api/user/me", { withCredentials: true});
     if (response.data) {
-      setUser(prev => response.data)
+      setUser(_prev => response.data)
     }
   }
   catch (error) {
@@ -76,22 +76,22 @@ function MainRoute() {
   const [navBarHidden, setNavBarHidden] = useState<boolean>(false);
   const [showProfile, setShowProfile] = useState<boolean>(false);
   function setProfile(isShown: boolean) {
-    setShowProfile(prev => isShown)
+    setShowProfile(_prev => isShown)
   }
 
   useLayoutEffect(() => {
     if (window.innerWidth < 1200) {
-      setNavBarHidden(prev => true)
+      setNavBarHidden(_prev => true)
     } 
   }, [])
 
   useEffect(() => {
-    function listener (this: Document, e: Event) {
+    function listener (this: Document, _e: Event) {
       if (window.innerWidth < 1200) {
-        setNavBarHidden(prev => true)
+        setNavBarHidden(_prev => true)
       }
       else {
-        setNavBarHidden(prev => false)
+        setNavBarHidden(_prev => false)
       }
     }
     window.addEventListener('resize', listener)
@@ -102,8 +102,8 @@ function MainRoute() {
     <Main>
       <>
         <SearchBar isNavBarHidden={navBarHidden} />
-        <TopBar isNavBarHidden={navBarHidden} showNavBar={() => setNavBarHidden(prev => false)} setProfile={() => setProfile(true)}/>
-        {!navBarHidden && <NavBar onClose={() => setNavBarHidden(prev => true)}/>}
+        <TopBar isNavBarHidden={navBarHidden} showNavBar={() => setNavBarHidden(_prev => false)} setProfile={() => setProfile(true)}/>
+        {!navBarHidden && <NavBar onClose={() => setNavBarHidden(_prev => true)}/>}
         {showProfile && <ProfileBox onClick={() => setProfile(false)}/>}
       </>
       <MainContent isNavBarHidden={navBarHidden}>

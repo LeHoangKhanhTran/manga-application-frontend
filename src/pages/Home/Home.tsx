@@ -4,7 +4,7 @@ import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg"
 import Slider from "../../components/Slider/Slider";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { transformLongText } from "../../util";
 interface HomeProps {
     isNavBarHidden: boolean
@@ -48,7 +48,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
         const fetchRecent = async() => {
             try {
                 const response: AxiosResponse = await axios.get('https://localhost:7245/api/manga/recently-added?numberOfItem=10')
-                setRecentManga(prev => response.data as RecentItem[])
+                setRecentManga(_prev => response.data as RecentItem[])
             }
             catch(error) {
                 console.log(error)

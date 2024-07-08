@@ -1,8 +1,7 @@
 import { Container, ProfileInfo } from "./Profile.style"
 import catImg from "../../assets/dex-cat.png"
 import { useEffect, useState } from "react"
-import axios, { Axios, AxiosResponse } from "axios"
-import { useUserContext } from "../../App"
+import axios, { AxiosResponse } from "axios"
 import { useParams } from "react-router-dom"
 import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg"
 import { splitParagraph } from "../../util";
@@ -51,13 +50,13 @@ const getDefaultValue = (type: "user" | "author") => {
 export default function Profile({ profileType }: ProfileProps) {
     const [profile, setProfile] = useState<User | Author>(getDefaultValue(profileType));
     const { authorId } = useParams();
-    const { user } = useUserContext();
+    // const { user } = useUserContext();
     useEffect(() => {
         async function getAuthor() {
             try {
                 const response: AxiosResponse = await axios.get<Author>(`https://localhost:7245/api/author/${authorId}`);
                 if (response.data) {
-                    setProfile(prev => response.data)
+                    setProfile(_prev => response.data)
                 }
             }
             catch(error) {
@@ -68,7 +67,7 @@ export default function Profile({ profileType }: ProfileProps) {
             try {
                 const response: AxiosResponse = await axios.get<User>(`https://localhost:7245/api/user/me`, { withCredentials: true});
                 if (response.data) {
-                    setProfile(prev => response.data)
+                    setProfile(_prev => response.data)
                 }
             }
             catch(error) {

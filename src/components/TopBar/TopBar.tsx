@@ -1,5 +1,4 @@
 import { Container } from "./TopBar.style";
-import { ReactComponent as SearchIcon } from "../../assets/search.svg";
 import { ReactComponent as PersonIcon } from "../../assets/person.svg";
 import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg";
 import { ReactComponent as WordMark } from "../../assets/mangadex-wordmark.svg";
@@ -17,12 +16,12 @@ export default function TopBar({ isNavBarHidden, showNavBar, setProfile } : TopB
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const { user } = useUserContext();
     useEffect(() => {
-        const handleScroll: (this: Document, ev: Event) => any = function (this: Document, ev: Event) {
+        const handleScroll: (this: Document, ev: Event) => any = function (this: Document, _ev: Event) {
             if (window.scrollY > 0) {
-                setIsScrolled(prev => true)
+                setIsScrolled(_prev => true)
             }
             else {
-                setIsScrolled(prev => false)
+                setIsScrolled(_prev => false)
             }
         };
         document.addEventListener("scroll", handleScroll)
