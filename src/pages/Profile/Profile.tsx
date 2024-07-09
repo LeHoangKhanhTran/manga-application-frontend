@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg"
 import { splitParagraph } from "../../util";
 import ProfileItem from "../../components/ProfileItem/ProfileItem"
-
+import config from "../../config"
 interface ProfileProps {
     profileType: "user" | "author",
 }
@@ -54,7 +54,7 @@ export default function Profile({ profileType }: ProfileProps) {
     useEffect(() => {
         async function getAuthor() {
             try {
-                const response: AxiosResponse = await axios.get<Author>(`https://localhost:7245/api/author/${authorId}`);
+                const response: AxiosResponse = await axios.get<Author>(`${config.apiUrl}/api/author/${authorId}`);
                 if (response.data) {
                     setProfile(_prev => response.data)
                 }
@@ -65,7 +65,7 @@ export default function Profile({ profileType }: ProfileProps) {
         }
         async function getUser() {
             try {
-                const response: AxiosResponse = await axios.get<User>(`https://localhost:7245/api/user/me`, { withCredentials: true});
+                const response: AxiosResponse = await axios.get<User>(`${config.apiUrl}/api/user/me`, { withCredentials: true});
                 if (response.data) {
                     setProfile(_prev => response.data)
                 }

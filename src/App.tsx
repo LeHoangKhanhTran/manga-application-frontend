@@ -10,12 +10,12 @@ import SearchBar from './components/SearchBar/SearchBar'
 import ProfileBox from './components/ProfileBox/ProfileBox'
 import Title from './pages/Title/Title';
 import { createContext } from 'react';
-import axios, { AxiosResponse } from 'axios'
-import Profile from './pages/Profile/Profile'
-import Random from './pages/Random/Random'
-import Follows from './pages/Follows/Follows'
-import TopRated from './pages/TopRated/TopRated'
-
+import axios, { AxiosResponse } from 'axios';
+import Profile from './pages/Profile/Profile';
+import Random from './pages/Random/Random';
+import Follows from './pages/Follows/Follows';
+import TopRated from './pages/TopRated/TopRated';
+import config from './config';
 const UserContext = createContext<UserContext>({
   user: null,
   setUser: () => {}
@@ -40,7 +40,7 @@ export interface UserContext {
 
 export async function getUser(setUser: React.Dispatch<React.SetStateAction<User | null>>) {
   try {
-    const response: AxiosResponse = await axios.get<User>("https://localhost:7245/api/user/me", { withCredentials: true});
+    const response: AxiosResponse = await axios.get<User>(`${config.apiUrl}/api/user/me`, { withCredentials: true});
     if (response.data) {
       setUser(_prev => response.data)
     }
@@ -56,7 +56,6 @@ function App(){
   useEffect(() => {
     getUser(setUser)
   }, [])
-  
   return (
       <BrowserRouter>
         <UserContext.Provider value={{user, setUser}}>

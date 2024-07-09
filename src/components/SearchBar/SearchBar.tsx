@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from "react";
 import MangaItem from "../MangaItem/MangaItem";
 import AuthorItem from "../AuthorItem/AuthorItem";
 import axios, { AxiosResponse } from "axios";
-// import { ReactComponent as CloseIcon } from "../../assets/";
+import config from "../../config";
 interface SearchBarProps {
     // isFocused: boolean,
     // onFocus: (focus: boolean) => void,
@@ -40,9 +40,9 @@ export default function SearchBar({ isNavBarHidden} : SearchBarProps) {
     }
     async function getSearchResult(term: string) {
         if (term.length > 0) {
-            const manga: AxiosResponse<MangaResult[]> = await axios.get<MangaResult[]>("https://localhost:7245/api/manga/search", {params: {title: term}})
+            const manga: AxiosResponse<MangaResult[]> = await axios.get<MangaResult[]>(`${config.apiUrl}/api/manga/search`, {params: {title: term}})
             setMangaResults(_prev => manga.data);
-            const authors: AxiosResponse<AuthorResult[]> = await axios.get<AuthorResult[]>("https://localhost:7245/api/author/search", {params: {name: term}})
+            const authors: AxiosResponse<AuthorResult[]> = await axios.get<AuthorResult[]>(`${config.apiUrl}/api/author/search`, {params: {name: term}})
             setAuthorResults(_prev => authors.data)
         }
     }

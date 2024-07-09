@@ -5,7 +5,8 @@ import { ReactComponent as SignOutIcon } from "../../assets/signout.svg"
 import axios, { AxiosResponse } from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useUserContext } from "../../App";
-import catImg from "../../assets/dex-cat.png"
+import catImg from "../../assets/dex-cat.png";
+import config from "../../config";
 interface ProfileBoxProps {
     onClick: () => void
 }
@@ -14,7 +15,7 @@ export default function ProfileBox({ onClick } : ProfileBoxProps) {
     const navigate = useNavigate();
     async function logOut() {
         try {
-            const response: AxiosResponse = await axios.post('https://localhost:7245/api/user/logout', "", {withCredentials: true});
+            const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/user/logout`, "", {withCredentials: true});
             console.log(response)
         }
         catch(error) {

@@ -11,7 +11,7 @@ import { useUserContext } from "../../App";
 import { getUser } from "../../App";
 import TagContainer from "../../components/TagContainer/TagContainer";
 import StatusTag from "../../components/StatusTag/StatusTag";
-
+import config from "../../config";
 interface TitleProps {
     isNavBarHidden: boolean
 }
@@ -49,7 +49,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
           try {
             setLoading(true);
             setError(null);
-            const title = await axios.get<Title>(`https://localhost:7245/api/manga/${id}`);
+            const title = await axios.get<Title>(`${config.apiUrl}/api/manga/${id}`);
             setTitle(title.data);
             setRatingScore(title.data['rating'])
             setFollow(title.data['follows'])
@@ -84,7 +84,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
             _previousScore: user?.userRatings?.find(rating => rating.mangaId === id) ? user?.userRatings?.find(rating => rating.mangaId === id)?.score : 0
         }
         try {
-            const response: AxiosResponse = await axios.post(`https://localhost:7245/api/manga/${id}/rating`, data);
+            const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/manga/${id}/rating`, data);
             setRatingScore(_prev => response.data['updatedRating']);
             console.log(ratingScore)
             getUser(setUser);
@@ -105,7 +105,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
             score: user?.userRatings?.find(rating => rating.mangaId === id)?.score,
         }
         try {
-            const response: AxiosResponse = await axios.post(`https://localhost:7245/api/manga/${id}/remove-rating`, data);
+            const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/manga/${id}/remove-rating`, data);
             setRatingScore(_prev => response.data['updatedRating'])
             getUser(setUser);
         }
@@ -122,7 +122,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
             navigate('../login')
         }
         try {
-            const response: AxiosResponse = await axios.post(`https://localhost:7245/api/manga/${id}/${follow ? 'follow' : 'unfollow'}`, {userId: user?.id})
+            const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/manga/${id}/${follow ? 'follow' : 'unfollow'}`, {userId: user?.id})
             setIsFollowed(_prev => follow)
             setFollow(_prev => response.data['updatedFollow'])
         }

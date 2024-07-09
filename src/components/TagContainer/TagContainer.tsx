@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Container } from "./TagContainer.style";
 import axios from "axios";
-
+import config from "../../config";
 interface Tag {
     id: string,
     type: string,
@@ -19,7 +19,7 @@ export default function TagContainer({ tagIds, children }: TagContainerProps) {
     useEffect(() => {
         const fetchTags  = async () => {
             try {
-                const requests = tagIds?.map((id) => axios.get<Tag>(`https://localhost:7245/api/tag/${id}`));
+                const requests = tagIds?.map((id) => axios.get<Tag>(`${config.apiUrl}/api/tag/${id}`));
                 if (requests) {
                     const tagsResponse = await axios.all(requests)
                     setTags(_prev => tagsResponse.map(response => response.data));

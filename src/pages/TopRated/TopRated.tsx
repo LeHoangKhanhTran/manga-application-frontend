@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Title } from "../Title/Title";
 import axios from "axios";
 import { splitParagraph, transformLongText } from "../../util";
-
+import config from "../../config";
 interface TopRatedProps {
     isNavBarHidden: boolean
 }
@@ -15,7 +15,7 @@ export default function TopRated({ isNavBarHidden }: TopRatedProps) {
     useEffect(() => {
         const getTopRated = async () => {
             try {
-                const response = await axios.get('https://localhost:7245/api/manga/top-rated?numberOfItem=9');
+                const response = await axios.get(`${config.apiUrl}/api/manga/top-rated?numberOfItem=9`);
                 if (response.data) {
                     setData(_prev => response.data)
                 }

@@ -13,6 +13,7 @@ import { Container } from "./NavBar.style"
 import { useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import axios, { AxiosResponse } from "axios";
+import config from "../../config";
 interface NavBarProps {
     onClose: () => void,
 }
@@ -68,7 +69,7 @@ export default function NavBar({ onClose }: NavBarProps) {
     const navigate = useNavigate();
     const navigateToTitle = async() => {
         try {
-            const response: AxiosResponse = await axios.get('https://localhost:7245/api/manga/random');
+            const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/manga/random`);
             setTimeout(() => {
                 navigate(`../title/${response.data}`)
             }, 1500)

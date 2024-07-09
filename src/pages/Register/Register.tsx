@@ -5,7 +5,7 @@ import Input from "../../components/Input/Input"
 import { useState, ChangeEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios, { AxiosError, AxiosResponse } from "axios"
-
+import config from "../../config"
 interface RegisterData {
   username: string;
   password: string;
@@ -43,7 +43,7 @@ export default function Register() {
           email: registerData['email'],
           role: 'User'
         }
-        const response : AxiosResponse = await axios.post('https://localhost:7245/api/user/register', data);
+        const response : AxiosResponse = await axios.post(`${config.apiUrl}/api/user/register`, data);
         if (response.status === 200) {
           navigate("/login")
         }

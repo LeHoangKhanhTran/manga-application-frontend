@@ -6,6 +6,7 @@ import { useEffect,  useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Title } from "../../pages/Title/Title";
 import { splitParagraph } from "../../util";
+import config from "../../config";
 
 interface ProfileItemProps {
     mangaId: string
@@ -26,7 +27,7 @@ export default function ProfileItem({ mangaId }: ProfileItemProps) {
         }, 500)
         const fetchManga = async() => {
             try {
-                const response: AxiosResponse = await axios.get(`https://localhost:7245/api/manga/${mangaId}`);
+                const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/manga/${mangaId}`);
                 if (response.data)
                     setItem(response.data as Title)
             }

@@ -6,6 +6,7 @@ import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import { User, useUserContext } from "../../App";
+import config from "../../config";
 {}
 interface LoginData {
   usernameOrEmail: string;
@@ -36,7 +37,7 @@ export default function Login() {
           usernameOrEmail: loginData['usernameOrEmail'].trim(),
           password: loginData['password'].trim()
         }
-        const response : AxiosResponse = await axios.post('https://localhost:7245/api/user/authenticate', data, {withCredentials: true});
+        const response : AxiosResponse = await axios.post(`${config.apiUrl}/api/user/authenticate`, data, {withCredentials: true});
         console.log(response)
       }
       catch (error ) {
@@ -49,7 +50,7 @@ export default function Login() {
       e.preventDefault();
       await authenticate(e);
       try {
-        const response: AxiosResponse = await axios.get<User>("https://localhost:7245/api/user/me", { withCredentials: true});
+        const response: AxiosResponse = await axios.get<User>(`${config.apiUrl}/api/user/me`, { withCredentials: true});
         if (response.data) {
           console.log(response);
           setUser(_prev => response.data)

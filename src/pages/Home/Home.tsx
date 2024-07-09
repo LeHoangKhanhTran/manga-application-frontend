@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { transformLongText } from "../../util";
+import config from "../../config";
 interface HomeProps {
     isNavBarHidden: boolean
 }
@@ -16,18 +17,6 @@ interface RecentItem {
     imageUrl: string
 }
 
-const breakpointScroll = new Map<number, number>(
-    [
-        [1350, 0],
-        [1300, 2],
-        [980, 4],
-        [800, 5],
-        [680, 6],
-        [490, 7],
-    ]
-)
-
-
 export default function Home({ isNavBarHidden }: HomeProps) {
     const [index, setIndex] = useState<number>(0);
     const [recentManga, setRecentManga] = useState<RecentItem[]>([]);
@@ -36,18 +25,15 @@ export default function Home({ isNavBarHidden }: HomeProps) {
     const list= useRef<HTMLDivElement | null>(null);
     const [wheelAmount, setWheelAmount] = useState<number>(0);
     const wheelTimeout = useRef(-1);
-
-    const getNumberOfScroll = (): number => {
-        let scroll = 1;
-        breakpointScroll.forEach((value, key) => {
-            if (window.innerWidth < key) scroll = value;
-        })
-        return scroll
+    const itemRef = useRef<HTMLAnchorElement | null>(null);
+    const hasReachedEnd = (): boolean => {
+        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().right < window.innerWidth
     }
     useLayoutEffect(() => {
         const fetchRecent = async() => {
+            
             try {
-                const response: AxiosResponse = await axios.get('https://localhost:7245/api/manga/recently-added?numberOfItem=10')
+                const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/manga/recently-added?numberOfItem=10`)
                 setRecentManga(_prev => response.data as RecentItem[])
             }
             catch(error) {
@@ -65,9 +51,10 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                  setWheelAmount(prev => (prev - 1) < 0 ? 0 : prev - 1)
                 }
                 else {
-                 setWheelAmount(prev => (prev + 1) >= getNumberOfScroll() + 1 ? prev : prev + 1)
+                //  setWheelAmount(prev => (prev + 1) >= getNumberOfScroll() + 1 ? prev : prev + 1)
+                setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
                 }
-            }, 100)
+            }, 300)
             wheelTimeout.current = timeOut
         }
             list.current?.addEventListener('wheel', wheelEvent)
@@ -79,7 +66,9 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                       }
                 }
             )
+            
     }, [])
+
     return (
         <Container isNavBarHidden={isNavBarHidden}>
             <h2 className="featured-titles">Featured Titles</h2>
@@ -98,9 +87,17 @@ export default function Home({ isNavBarHidden }: HomeProps) {
             <section className="recent">
                 <h2>Recently Added</h2>
                 <div className="list" ref={list}>
-                    {recentManga.map((manga) => {
+                    {recentManga.map((manga, i) => {
+                        if (i < recentManga.length - 1) {
+                            return (
+                                <Link to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
+                                    <img src={manga.imageUrl} alt="recent-manga-img" />
+                                    <div>{transformLongText(manga.title, 26)}</div>
+                                </Link>
+                            )
+                        }
                         return (
-                            <Link to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
+                            <Link ref={itemRef} to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
                                 <img src={manga.imageUrl} alt="recent-manga-img" />
                                 <div>{transformLongText(manga.title, 26)}</div>
                             </Link>

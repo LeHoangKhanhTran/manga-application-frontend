@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { User } from "../../App";
 import axios, { AxiosResponse } from "axios";
 import ProfileItem from "../../components/ProfileItem/ProfileItem";
+import config from "../../config";
 interface FollowsProps {
     isNavBarHidden: boolean
 }
@@ -14,10 +15,11 @@ export default function Follows({ isNavBarHidden }: FollowsProps) {
     useEffect(() => {
         const getUser = async() => {
             try {
-                const response: AxiosResponse = await axios.get('https://localhost:7245/api/user/me', { withCredentials: true})
+                const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/user/me`, { withCredentials: true})
                 setUser(_prev => response.data)
             }
             catch(error) {
+                navigate('../login');
                 console.log(error)
             }
         }
