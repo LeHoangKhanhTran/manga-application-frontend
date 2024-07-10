@@ -30,7 +30,7 @@ export const Container = styled.div<FollowsProps>`
         background: #2f333b;
     }
 
-    @media screen and (max-width: 780px){
+    @media screen and (max-width: 980px){
         padding: 0 20px;
     }
 

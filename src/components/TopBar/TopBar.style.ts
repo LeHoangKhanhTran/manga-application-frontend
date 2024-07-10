@@ -45,7 +45,7 @@ export const Container = styled.div<TopBarProps>`
         cursor: pointer;
     }
 
-    @media screen and (max-width: 780px){
+    @media screen and (max-width: 980px){
       width: 100dvw;
       padding: 0 20px;
     }

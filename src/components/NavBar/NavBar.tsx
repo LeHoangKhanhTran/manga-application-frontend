@@ -109,7 +109,7 @@ export default function NavBar({ onClose }: NavBarProps) {
                         <span>Titles</span>
                     </div>
                     <div className="menu-list">
-                        <div className="menu-option">Advanced Search</div>
+                        {/* <div className="menu-option">Advanced Search</div> */}
                         <Link to='../top-rated' className="menu-option" id="top-rated">Top Rated</Link>
                         <Link className="menu-option" to='/random' onClick={navigateToTitle} id="random">
                             <span>Random</span>

@@ -83,10 +83,13 @@ export const Container = styled(Link)<MangaItemProps>`
     }
 
     @media screen and (max-width: 780px){
-        font-size: 12px;
+        font-size: 13px;
 
+        .item-title {
+            line-height: 1em;
+        }
         .rate, .bookmark, .visibility {
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
         
     }

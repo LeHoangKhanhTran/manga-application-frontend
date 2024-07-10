@@ -123,6 +123,7 @@ export const Container = styled.div<SearchBarProps>`
 
         .search-result {
             width: calc(100% - 45px);
+            min-width: 295px;
         }
 
         #search-icon {

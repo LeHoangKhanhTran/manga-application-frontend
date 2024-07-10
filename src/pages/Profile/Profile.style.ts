@@ -143,7 +143,7 @@ export const ProfileInfo = styled.div`
         gap: .5rem;
     }
 
-    @media screen and (max-width: 780px){
+    @media screen and (max-width: 980px){
         padding: 0 10px;
         .avatar {
             width: calc(150px + .5rem);

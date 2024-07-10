@@ -20,7 +20,7 @@ export default function MangaItem({id, url, name, status, rating, follows, onCli
         <Container status={status} to={`/title/${id}`} onClick={onClick}>
             <div className="item-content">
                 <img src={url} alt="" />
-                <span className="item-title">{transformLongText(name, 40)}</span>
+                <span className="item-title">{transformLongText(name, 38)}</span>
                 <div className="flex-container wrapper">
                     <div className="rate">
                         <StarIcon width="14px" height="14px"/> 
