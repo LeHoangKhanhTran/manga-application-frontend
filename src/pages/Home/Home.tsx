@@ -42,6 +42,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
         }
         fetchRecent()
     }, [])
+
     useEffect(() => {
         const wheelEvent = (e: WheelEvent) => {
             e.preventDefault()        
@@ -54,8 +55,8 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                 //  setWheelAmount(prev => (prev + 1) >= getNumberOfScroll() + 1 ? prev : prev + 1)
                 setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
                 }
-            }, 300)
-            wheelTimeout.current = timeOut
+            }, 200)
+            wheelTimeout.current = timeOut;
         }
             list.current?.addEventListener('wheel', wheelEvent)
             return (
