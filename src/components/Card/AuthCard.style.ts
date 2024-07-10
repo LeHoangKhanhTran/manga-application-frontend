@@ -60,4 +60,10 @@ export const Card = styled.div`
         font-size: 1rem;
         color: red;
     }
+
+    @media screen and (max-width: 680px){
+        padding: 20px 30px 30px 30px;
+        width: 80vw;
+        min-width: 360px;
+    }
 `
