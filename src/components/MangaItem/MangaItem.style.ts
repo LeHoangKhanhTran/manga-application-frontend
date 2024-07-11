@@ -22,9 +22,11 @@ export const Container = styled(Link)<MangaItemProps>`
     color: var(--primary-text-color) !important;
     overflow: hidden;
     font-size: 14px;
+
     .item-content {
         display: grid;
         grid-template-columns: 56px auto;
+        grid-template-rows: auto auto auto;
         column-gap: .75em;
         height: 80px;
     }
@@ -36,6 +38,8 @@ export const Container = styled(Link)<MangaItemProps>`
     }
 
     .item-title {
+        word-break: break-all;
+        max-height: 35px;
         font-size: 1.3em;
         line-height: 1.3em;
         font-weight: 800;

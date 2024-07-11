@@ -81,7 +81,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         const data = {
             userId: user?.id,
             score: score,
-            _previousScore: user?.userRatings?.find(rating => rating.mangaId === id) ? user?.userRatings?.find(rating => rating.mangaId === id)?.score : 0
+            previousScore: user?.userRatings?.find(rating => rating.mangaId === id) ? user?.userRatings?.find(rating => rating.mangaId === id)?.score : 0
         }
         try {
             const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/manga/${id}/rating`, data);
@@ -152,7 +152,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
                 </section>
                 <section className="buttons">
                     <button className="bookmark-btn" onClick={() => handleFollow(!isFollowed)}>
-                        {isFollowed ? <FollowedIcon/> : <BookmarkIcon/>}
+                        {isFollowed ? <FollowedIcon /> : <BookmarkIcon/>}
                         <span>{isFollowed ? "Unfollow" : "Follow"}</span>
                     </button>
                     <button className="rate-btn" onClick={() => setRateActive(prev => !prev)}>
@@ -185,11 +185,11 @@ export default function Title({ isNavBarHidden } : TitleProps) {
                         <span>{ratingScore > 0 ? ratingScore : "Not Rated"}</span>
                     </div>
                     <div className="bookmark">
-                        <BookmarkIcon width="16px" height="16px"/>
+                        <BookmarkIcon className="icon" width="16px" height="16px"/>
                         <span>{follow}</span>
                     </div>
                     <div className="visibility">
-                        <EyeIcon width="16px" height="16px"/>
+                        <EyeIcon className="icon" width="16px" height="16px"/>
                         <span>N/A</span>
                     </div>
                 </section>

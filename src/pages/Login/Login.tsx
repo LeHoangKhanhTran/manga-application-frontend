@@ -7,7 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import { User, useUserContext } from "../../App";
 import config from "../../config";
-{}
+import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg"
+import { ReactComponent as WordMark } from "../../assets/mangadex-wordmark.svg"
 interface LoginData {
   usernameOrEmail: string;
   password: string
@@ -37,7 +38,7 @@ export default function Login() {
           usernameOrEmail: loginData['usernameOrEmail'].trim(),
           password: loginData['password'].trim()
         }
-        const response : AxiosResponse = await axios.post(`${config.apiUrl}/api/user/authenticate`, data);
+        const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/user/authenticate`, data);
       }
       catch (error ) {
         console.log("Something went wrong during authentication.")
@@ -64,6 +65,10 @@ export default function Login() {
     return (
       <Container>
         <img id="key-img" src={loginImg} alt="login-key-img"/>
+        <a className="logo" href="/">
+          <LogoIcon/>
+          <WordMark/>
+        </a>
         <Card>
           <h2>Sign in to your account</h2>
           <form>
@@ -74,7 +79,7 @@ export default function Login() {
                 <input type="checkbox" name="remember-me" className="checkbox" id="remember-me"/>
                 <span>Remember me</span>
               </label>
-              <span className="forgot-password">Forgot password?</span>
+              {/* <span className="forgot-password">Forgot password?</span> */}
             </div>
             <button className="auth-btn" onClick={handleClick}>Sign in</button>
           </form> 

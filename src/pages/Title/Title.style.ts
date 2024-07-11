@@ -113,6 +113,7 @@ export const TitleInfo = styled.div<TitleProps>`
     }
 
     #name {
+        overflow: hidden;
         font-size: 4.5em;
         font-weight: 700;
         line-height: 1.1em;
@@ -301,7 +302,15 @@ export const TitleInfo = styled.div<TitleProps>`
 
     }
 
-    @media screen and (max-width: 580px){
+    @media screen and (max-width: 480px){
+        .stats span{
+            font-size: 12px;
+        }
+        .icon {
+            width: 10px;
+            height: 10px;
+        }
+        grid-template-columns: 126px 1fr;
         padding: 0 10px;
     }
 

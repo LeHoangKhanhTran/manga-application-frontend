@@ -56,7 +56,6 @@ export default function SearchBar({ isNavBarHidden} : SearchBarProps) {
                 <input type="search" name="search-bar" id="search-bar" placeholder="Search" value={searchTerm} onClick={() => setIsFocused(true)} autoComplete="off" onChange={handleChange}/>
                 {searchTerm.length < 1 && <SearchIcon id="search-icon" width="16" height="16" onClick={() => setIsFocused(true)}/>}
                 {isFocused && searchTerm.length === 0 && <div className="search-result">Enter a search query...</div>}
-                <button id="close-btn" onClick={(e) => {e.preventDefault(); setIsFocused(false)}}></button>
                 {searchTerm.length > 0 &&
                     <div className="search-result">
                     {mangaResults.length > 0 && 
@@ -85,6 +84,7 @@ export default function SearchBar({ isNavBarHidden} : SearchBarProps) {
                     }
             </div>}
             </form>
+            <button id="close-btn" onClick={(e) => {e.preventDefault(); setIsFocused(false)}}></button>
             {isFocused && <div className="shade" onClick={handleItemClick}></div>}
         </Container>
     )

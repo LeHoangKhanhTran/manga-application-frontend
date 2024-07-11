@@ -14,6 +14,11 @@ export const Container = styled.main`
         bottom: 0;
     }
 
+    .logo {
+        position: fixed;
+        top: 30px;
+    }
+
     .settings {
         display: flex;
         justify-content: space-between;

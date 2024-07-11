@@ -6,6 +6,8 @@ import { useState, ChangeEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios, { AxiosError, AxiosResponse } from "axios"
 import config from "../../config"
+import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg"
+import { ReactComponent as WordMark } from "../../assets/mangadex-wordmark.svg"
 interface RegisterData {
   username: string;
   password: string;
@@ -59,29 +61,33 @@ export default function Register() {
     }
     return (
         <Container>
-        <img id="key-img" src={loginImg} alt="login-key-img"/>
-        <Card>
-          <h2>Register</h2>
-          <div className="note">
-            <span>*</span>
-            <span>{'\u00A0'}Required fields</span>
-          </div>
-          <form>
-            <Input label="username" labelText="username" inputType="text" isRequired={true} value={registerData["username"]} onChange={handleChange}/>
-            {error?.toLowerCase().includes('username') && <div className="error">{error}</div>}
-            <Input label="password" labelText="password" inputType="password" isRequired={true} value={registerData["password"]} onChange={handleChange}/>
-            {error?.toLowerCase().includes('password') && error !== 'Password is incorrect.' && <div className="error">{error}</div>}
-            <Input label="confirmPassword" labelText="confirm password" inputType="password" isRequired={true} value={registerData["confirmPassword"]} onChange={handleChange}/>
-            {error && error === 'Password is incorrect.' && <div className="error">{error}</div>}
-            <Input label="email" labelText="email" inputType="email" isRequired={true} value={registerData["email"]} onChange={handleChange}/>
-            {error?.toLowerCase().includes('email') && <div className="error">{error}</div>}
-            <Link className="navigate" to='/login'>
-              <span className="arrow">{'<<'}</span>
-              <span>{'\u00A0'}Back to Login</span>
-            </Link>
-            <button className="auth-btn" onClick={handleClick}>Register</button>
-          </form>
-        </Card>
+          <a className="logo" href="/">
+            <LogoIcon/>
+            <WordMark/>
+          </a>
+          <img id="key-img" src={loginImg} alt="login-key-img"/>
+          <Card>
+            <h2>Register</h2>
+            <div className="note">
+              <span>*</span>
+              <span>{'\u00A0'}Required fields</span>
+            </div>
+            <form>
+              <Input label="username" labelText="username" inputType="text" isRequired={true} value={registerData["username"]} onChange={handleChange}/>
+              {error?.toLowerCase().includes('username') && <div className="error">{error}</div>}
+              <Input label="password" labelText="password" inputType="password" isRequired={true} value={registerData["password"]} onChange={handleChange}/>
+              {error?.toLowerCase().includes('password') && error !== 'Password is incorrect.' && <div className="error">{error}</div>}
+              <Input label="confirmPassword" labelText="confirm password" inputType="password" isRequired={true} value={registerData["confirmPassword"]} onChange={handleChange}/>
+              {error && error === 'Password is incorrect.' && <div className="error">{error}</div>}
+              <Input label="email" labelText="email" inputType="email" isRequired={true} value={registerData["email"]} onChange={handleChange}/>
+              {error?.toLowerCase().includes('email') && <div className="error">{error}</div>}
+              <Link className="navigate" to='/login'>
+                <span className="arrow">{'<<'}</span>
+                <span>{'\u00A0'}Back to Login</span>
+              </Link>
+              <button className="auth-btn" onClick={handleClick}>Register</button>
+            </form>
+          </Card>
       </Container> 
     )
 }

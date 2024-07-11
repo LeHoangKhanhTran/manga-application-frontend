@@ -16,11 +16,20 @@ interface MangaItemProps {
     onClick: () => void
 }
 export default function MangaItem({id, url, name, status, rating, follows, onClick} : MangaItemProps) {
+    const getBreakText = () => {
+        if (window.innerWidth < 780 && window.innerWidth >= 480) {
+            return 25;
+        }
+        else if (window.innerWidth < 380) {
+            return 18;
+        }
+        return 40
+    }
     return (
         <Container status={status} to={`/title/${id}`} onClick={onClick}>
             <div className="item-content">
                 <img src={url} alt="" />
-                <span className="item-title">{transformLongText(name, 38)}</span>
+                <span className="item-title">{transformLongText(name, getBreakText())}</span>
                 <div className="flex-container wrapper">
                     <div className="rate">
                         <StarIcon width="14px" height="14px"/> 

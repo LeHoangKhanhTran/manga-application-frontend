@@ -30,7 +30,7 @@ export const Container = styled.div<SearchBarProps>`
         background: rgb(52, 55, 70, 0.75);
         width: ${props => props.isFocused ? "38dvw" : "300px"};
         outline: none;
-        min-width: ${props => props.isFocused ? "320px" : "300px"};;
+        min-width: ${props => props.isFocused ? "360px" : "320px"};;
         border-radius: 7px;
         padding: .25rem 1rem;
         font-size: 1rem;
@@ -78,11 +78,9 @@ export const Container = styled.div<SearchBarProps>`
     }
 
     #close-btn {
-        position: absolute;
+        position: fixed;
         display: none;
         right: 0;
-        width: 2rem;
-        height: 2rem;
         border-radius: 50%;
         border: none;
         background: transparent;
@@ -118,16 +116,16 @@ export const Container = styled.div<SearchBarProps>`
            display: ${props => props.isFocused ? 'inline-block' : 'none'};
            left: 0;
            width: 95%;
-           min-width: min-content;
+           min-width: 295px;
         }
 
         .search-result {
-            width: calc(100% - 45px);
+            width: calc(95% - 20px);
             min-width: 295px;
         }
 
         #search-icon {
-            right: ${props => props.isFocused ? '40px' : 'calc(20px + 34px + 20px)'};
+            right: ${props => props.isFocused ? '10vw' : 'calc(20px + 34px + 2vw)'};
             width: 22px;
             height: 22px;
             pointer-events: all;
@@ -138,9 +136,8 @@ export const Container = styled.div<SearchBarProps>`
             justify-content: center;
             align-items: center;
             pointer-events: all;
+            transform: translateX(5px);
         }
-
-        
  
     }
 `

@@ -57,7 +57,7 @@ export const Container = styled.div<TopRatedProps>`
 
     .img-container > img {
         border-radius: 4px;
-        width: 182px;
+        width: 100%;
         height: 100%;
     }
 
@@ -124,6 +124,11 @@ export const Container = styled.div<TopRatedProps>`
         .manga-list {
             grid-template-columns: auto auto;
         }
+
+        .list-item {
+            width: 170px;
+        }
+
     }
 
 

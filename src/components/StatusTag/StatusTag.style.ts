@@ -18,7 +18,7 @@ export const Container = styled.div<StatusProps>`
     align-items: center;
     text-transform: ${props => props.isUppercase ? "uppercase" : ""};
     font-weight: 600;
-    font-size: .85em;
+    font-size: .95em;
     gap: 5px;
     background: ${props => props.showBackground ? "#282A36" : "none"};
     padding: ${props => props.showBackground ? "2.5px 6px 0px 6px" : ""};

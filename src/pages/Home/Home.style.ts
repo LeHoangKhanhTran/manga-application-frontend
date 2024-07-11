@@ -168,12 +168,12 @@ export const Container = styled.div<ContainerProps>`
             gap: 5px;
             bottom: 0;
             right: 50%;
-            transform: translate(50%, 5px);
+            transform: translate(50%, 2px);
         }
 
         .arrow-btn {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
         }
 
         .list-item > img {
@@ -183,12 +183,38 @@ export const Container = styled.div<ContainerProps>`
         .list-item > div {
             top: calc(200px + 7px)
         }
+
+        .switch-title {
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .switch-title > span {
+            order: 2;
+        }
+
+        .left-arrow {
+            order: 1;
+        }
+
+        .right-arrow {
+            order: 3;
+        }
     }
 
     @media screen and (max-width: 490px){
         .list-item {
             width: calc((100% - 20px) / 3);
         }
+
+        .list-item > img {
+            height: 170px;
+        }
+
+        .list-item > div {
+            top: calc(170px + 7px)
+        }
+
     }
 
 `

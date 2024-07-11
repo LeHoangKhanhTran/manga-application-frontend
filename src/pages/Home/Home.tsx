@@ -77,10 +77,10 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                 <Slider isNavBarHidden={isNavBarHidden} index={index}/>
                 <div className="switch-title">
                     <span className={index === 0 ? "most-popular" : ""}>NO.{index + 1}</span>
-                    <button className="arrow-btn" onClick={prevIndex}>
+                    <button className="arrow-btn left-arrow" onClick={prevIndex}>
                         <LeftArrow/>
                     </button>
-                    <button className="arrow-btn" onClick={nextIndex}>
+                    <button className="arrow-btn right-arrow" onClick={nextIndex}>
                         <RightArrow/>
                     </button>
                 </div>
