@@ -38,7 +38,7 @@ export default function Login() {
           usernameOrEmail: loginData['usernameOrEmail'].trim(),
           password: loginData['password'].trim()
         }
-        const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/user/authenticate`, data);
+        await axios.post(`${config.apiUrl}/api/user/authenticate`, data);
       }
       catch (error ) {
         console.log("Something went wrong during authentication.")
