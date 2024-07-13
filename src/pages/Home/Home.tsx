@@ -27,11 +27,10 @@ export default function Home({ isNavBarHidden }: HomeProps) {
     const wheelTimeout = useRef(-1);
     const itemRef = useRef<HTMLAnchorElement | null>(null);
     const hasReachedEnd = (): boolean => {
-        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().right < window.innerWidth
+        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().right < window.innerWidth;
     }
     useLayoutEffect(() => {
-        const fetchRecent = async() => {
-            
+        const fetchRecent = async() => {      
             try {
                 const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/manga/recently-added?numberOfItem=10`)
                 setRecentManga(_prev => response.data as RecentItem[])
@@ -55,7 +54,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                 //  setWheelAmount(prev => (prev + 1) >= getNumberOfScroll() + 1 ? prev : prev + 1)
                 setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
                 }
-            }, 200)
+            }, 250)
             wheelTimeout.current = timeOut;
         }
             list.current?.addEventListener('wheel', wheelEvent)

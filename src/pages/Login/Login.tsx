@@ -4,7 +4,7 @@ import loginImg from '../../assets/mdex-login-key.png'
 import { ChangeEvent, useState } from "react";
 import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { User, useUserContext } from "../../App";
 import config from "../../config";
 import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg"
@@ -38,10 +38,11 @@ export default function Login() {
           usernameOrEmail: loginData['usernameOrEmail'].trim(),
           password: loginData['password'].trim()
         }
-        await axios.post(`${config.apiUrl}/api/user/authenticate`, data);
+        await axios.post(`${config.apiUrl}/api/user/authenticate`, data, {withCredentials: true});
       }
-      catch (error ) {
+      catch (error) {
         console.log("Something went wrong during authentication.")
+        console.log(error as AxiosError)
       }
      
     } 
