@@ -10,7 +10,6 @@ import { splitParagraph } from "../../util";
 import { useUserContext } from "../../App";
 import { getUser } from "../../App";
 import TagContainer from "../../components/TagContainer/TagContainer";
-import StatusTag from "../../components/StatusBadge/StatusBadge";
 import config from "../../config";
 import StatusBadge from "../../components/StatusBadge/StatusBadge";
 interface TitleProps {
