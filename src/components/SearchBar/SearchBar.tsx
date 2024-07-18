@@ -16,7 +16,7 @@ interface SearchBarProps {
 interface MangaResult {
     id: string,
     title: string,
-    status: string, 
+    status: "Ongoing" | "Completed" | "Hiatus" | "Cancelled", 
     imageUrl: string,
     rating: number,
     follows: number
@@ -56,7 +56,8 @@ export default function SearchBar({ isNavBarHidden} : SearchBarProps) {
                 <input type="search" name="search-bar" id="search-bar" placeholder="Search" value={searchTerm} onClick={() => setIsFocused(true)} autoComplete="off" onChange={handleChange}/>
                 {searchTerm.length < 1 && <SearchIcon id="search-icon" width="16" height="16" onClick={() => setIsFocused(true)}/>}
                 {isFocused && searchTerm.length === 0 && <div className="search-result">Enter a search query...</div>}
-                {searchTerm.length > 0 &&
+                {searchTerm.length > 0 && mangaResults.length === 0 && <div className="search-result">No results found.</div>}
+                {searchTerm.length > 0 && mangaResults.length > 0 &&
                     <div className="search-result">
                     {mangaResults.length > 0 && 
                         <ResultSection>
@@ -64,7 +65,7 @@ export default function SearchBar({ isNavBarHidden} : SearchBarProps) {
                             <div className="search-result-list">
                                 {mangaResults.map((result) => {
                                     return (
-                                        <MangaItem key={result.id} id={result.id} url={result.imageUrl} name={result.title} status="Ongoing" rating={result.rating} follows={result.follows} onClick={handleItemClick}/>
+                                        <MangaItem key={result.id} id={result.id} url={result.imageUrl} name={result.title} status={result.status} rating={result.rating} follows={result.follows} onClick={handleItemClick}/>
                                     )
                                 })}
                             </div>

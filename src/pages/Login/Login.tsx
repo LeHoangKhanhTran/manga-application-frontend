@@ -21,6 +21,7 @@ const userData = {
 
 export default function Login() {
     const [loginData, setLoginData] = useState<LoginData>(userData);
+    const [error, setError] = useState<string>("");
     const navigate = useNavigate();
     const { setUser } = useUserContext();
     function handleChange(e: ChangeEvent<HTMLInputElement>) : void {
@@ -41,14 +42,21 @@ export default function Login() {
         await axios.post(`${config.apiUrl}/api/user/authenticate`, data, {withCredentials: true});
       }
       catch (error) {
-        console.log("Something went wrong during authentication.")
-        console.log(error as AxiosError)
+        setError(_prev => (error as AxiosError).response?.data as string);
       }
      
     } 
-    
+    console.log(error)
     async function handleClick(e : React.MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
+      if (loginData['usernameOrEmail'] === null || loginData['usernameOrEmail'].trim().length === 0) {
+        setError(_prev => 'Invalid username.');
+        return;
+      }
+      else if (loginData['password'] === null || loginData['password'].trim().length === 0) {
+        setError(_prev => 'Invalid password.');
+        return;
+      }
       await authenticate(e);
       try {
         const response: AxiosResponse = await axios.get<User>(`${config.apiUrl}/api/user/me`, { withCredentials: true});
@@ -73,8 +81,14 @@ export default function Login() {
         <Card>
           <h2>Sign in to your account</h2>
           <form>
-            <Input label="usernameOrEmail" inputType="text" labelText="Username or email" isRequired={false} value={loginData["usernameOrEmail"]} onChange={handleChange}/>
-            <Input label="password" inputType="password" labelText="Password" isRequired={false} value={loginData["password"]} onChange={handleChange}/>
+            <div>
+              <Input isWarning={error.toLowerCase().includes('username')} label="usernameOrEmail" inputType="text" labelText="Username or email" isRequired={false} value={loginData["usernameOrEmail"]} onChange={handleChange}/>
+              {error && error.toLowerCase().includes('username') && <div className="error">{error}</div>}
+            </div>
+            <div>
+              <Input isWarning={error.toLowerCase().includes('password')} label="password" inputType="password" labelText="Password" isRequired={false} value={loginData["password"]} onChange={handleChange}/>
+              {error && error.toLowerCase().includes('password') && <div className="error">{error}</div>}
+            </div>
             <div className="settings">
               <label htmlFor="remember-me" id="remember-me-label">
                 <input type="checkbox" name="remember-me" className="checkbox" id="remember-me"/>

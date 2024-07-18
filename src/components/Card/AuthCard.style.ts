@@ -49,6 +49,7 @@ export const Card = styled.div`
         font-weight: 500;
         background: var(--primary-btn-color);
         margin-top: 15px;
+        margin-bottom: 54px;
     }
 
 
@@ -57,7 +58,9 @@ export const Card = styled.div`
     }
 
     .error {
-        font-size: 1rem;
+        position: relative;
+        top: 10px;
+        font-size: .9rem;
         color: red;
     }
 

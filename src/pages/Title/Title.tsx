@@ -10,8 +10,9 @@ import { splitParagraph } from "../../util";
 import { useUserContext } from "../../App";
 import { getUser } from "../../App";
 import TagContainer from "../../components/TagContainer/TagContainer";
-import StatusTag from "../../components/StatusTag/StatusTag";
+import StatusTag from "../../components/StatusBadge/StatusBadge";
 import config from "../../config";
+import StatusBadge from "../../components/StatusBadge/StatusBadge";
 interface TitleProps {
     isNavBarHidden: boolean
 }
@@ -176,7 +177,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
                 </section>
                 <section className="info">
                     <TagContainer tagIds={title?.tagIds}>
-                        <StatusTag status={title?.status} showPublication={true} showBackground={false} isUppercase={true}/>
+                        <StatusBadge status={title?.status} showPublication={true} showBackground={false} isUppercase={true}/>
                     </TagContainer>
                 </section>
                 <section className="stats">

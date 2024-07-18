@@ -22,7 +22,7 @@ const userData = {
 }
 export default function Register() {
     const [registerData, setRegisterData] = useState<RegisterData>(userData);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string>("");
     const navigate = useNavigate();
     function handleChange(e: ChangeEvent<HTMLInputElement>) : void {
       setRegisterData((prev: RegisterData) => {
@@ -73,14 +73,22 @@ export default function Register() {
               <span>{'\u00A0'}Required fields</span>
             </div>
             <form>
-              <Input label="username" labelText="username" inputType="text" isRequired={true} value={registerData["username"]} onChange={handleChange}/>
-              {error?.toLowerCase().includes('username') && <div className="error">{error}</div>}
-              <Input label="password" labelText="password" inputType="password" isRequired={true} value={registerData["password"]} onChange={handleChange}/>
-              {error?.toLowerCase().includes('password') && error !== 'Password is incorrect.' && <div className="error">{error}</div>}
-              <Input label="confirmPassword" labelText="confirm password" inputType="password" isRequired={true} value={registerData["confirmPassword"]} onChange={handleChange}/>
-              {error && error === 'Password is incorrect.' && <div className="error">{error}</div>}
-              <Input label="email" labelText="email" inputType="email" isRequired={true} value={registerData["email"]} onChange={handleChange}/>
-              {error?.toLowerCase().includes('email') && <div className="error">{error}</div>}
+              <div>
+                <Input isWarning={error.toLowerCase().includes('username')} label="username" labelText="username" inputType="text" isRequired={true} value={registerData["username"]} onChange={handleChange}/>
+                {error?.toLowerCase().includes('username') && <div className="error">{error}</div>}
+              </div>
+              <div>
+                <Input isWarning={error.toLowerCase().includes('password') && error !== 'Password is incorrect.'} label="password" labelText="password" inputType="password" isRequired={true} value={registerData["password"]} onChange={handleChange}/>
+                {error?.toLowerCase().includes('password') && error !== 'Password is incorrect.' && <div className="error">{error}</div>}
+              </div>
+              <div>
+                <Input isWarning={error === 'Password is incorrect.'} label="confirmPassword" labelText="confirm password" inputType="password" isRequired={true} value={registerData["confirmPassword"]} onChange={handleChange}/>
+                {error && error === 'Password is incorrect.' && <div className="error">{error}</div>}
+              </div>
+              <div>
+                <Input isWarning={error.toLowerCase().includes('email')} label="email" labelText="email" inputType="email" isRequired={true} value={registerData["email"]} onChange={handleChange}/>
+                {error?.toLowerCase().includes('email') && <div className="error">{error}</div>}
+              </div>
               <Link className="navigate" to='/login'>
                 <span className="arrow">{'<<'}</span>
                 <span>{'\u00A0'}Back to Login</span>

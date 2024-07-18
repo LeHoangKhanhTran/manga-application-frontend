@@ -2,8 +2,9 @@ import { ReactComponent as StarIcon } from "../../assets/star.svg";
 import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg";
 import { ReactComponent as EyeIcon } from "../../assets/eye.svg"
 import { Container } from "./MangaItem.style";
-import StatusTag from "../StatusTag/StatusTag";
+import StatusTag from "../StatusBadge/StatusBadge";
 import { transformLongText } from "../../util";
+import StatusBadge from "../StatusBadge/StatusBadge";
 
 
 interface MangaItemProps {
@@ -44,7 +45,7 @@ export default function MangaItem({id, url, name, status, rating, follows, onCli
                         <div>N/A</div>
                     </div>
                 </div>
-                <StatusTag status={status}/>
+                <StatusBadge status={status}/>
             </div>
         </Container>
     )

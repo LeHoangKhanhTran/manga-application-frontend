@@ -1,12 +1,13 @@
 import { Container } from "./ProfileItem.style";
 import TagContainer from "../TagContainer/TagContainer";
 import StatsContainer from "../StatsContainer/StatsContainer";
-import StatusTag from "../StatusTag/StatusTag";
+import StatusTag from "../StatusBadge/StatusBadge";
 import { useEffect,  useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Title } from "../../pages/Title/Title";
 import { splitParagraph } from "../../util";
 import config from "../../config";
+import StatusBadge from "../StatusBadge/StatusBadge";
 
 interface ProfileItemProps {
     mangaId: string
@@ -44,7 +45,7 @@ export default function ProfileItem({ mangaId }: ProfileItemProps) {
             <div className="name">{item?.title}</div>
             <div className="stats">
                 <StatsContainer ratingScore={item?.rating} follow={item?.follows}>
-                    <StatusTag status="Completed"/>
+                    <StatusBadge status={item?.status}/>
                 </StatsContainer>
             </div>
             <div className="tags" ref={tagsRef}>

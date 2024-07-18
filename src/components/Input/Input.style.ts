@@ -20,6 +20,7 @@ export const InputField = styled.div`
         font-size: 1rem;
         color: black;
     }
+
     input:focus {
         outline: none;
         border: 2.5px solid var(--primary-btn-color);
@@ -30,5 +31,9 @@ export const InputField = styled.div`
     .require-sign {
         color: red;
         font-size: 1.2rem;
+    }
+
+    .warning, .warning:focus {
+        border: 2.5px solid red;
     }
 `
