@@ -1,7 +1,6 @@
 import { Container } from "./ProfileItem.style";
 import TagContainer from "../TagContainer/TagContainer";
 import StatsContainer from "../StatsContainer/StatsContainer";
-import StatusTag from "../StatusBadge/StatusBadge";
 import { useEffect,  useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Title } from "../../pages/Title/Title";
