@@ -26,7 +26,7 @@ export const Container = styled(Link)<ProfileItemProps>`
     .title-img {
         grid-area: img;
         width: 90px;
-        min-height: 135px;
+        height: 135px;
         border-radius: 4px;
     }
 
