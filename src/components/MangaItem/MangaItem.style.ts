@@ -14,7 +14,7 @@ const statusColor = {
 export const Container = styled(Link)<MangaItemProps>`
     width: 100%;
     height: fit-content;
-    background: #343746;
+    background: var(--item-background-color);
     border-radius: 4px;
     box-sizing: border-box;
     padding: 5px;
@@ -22,6 +22,7 @@ export const Container = styled(Link)<MangaItemProps>`
     color: var(--primary-text-color) !important;
     overflow: hidden;
     font-size: 14px;
+
 
     .item-content {
         display: grid;
@@ -97,9 +98,10 @@ export const Container = styled(Link)<MangaItemProps>`
         }
         
     }
+`
 
-    /* @media screen and (max-width: 680px){
-        width: calc(100% - 20px);
-        
-    } */
+export const LoadingItem = styled.div`
+    width: 100%;
+    height: 100px;
+    border-radius: 4px;
 `

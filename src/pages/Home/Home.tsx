@@ -27,7 +27,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
     const wheelTimeout = useRef(-1);
     const itemRef = useRef<HTMLAnchorElement | null>(null);
     const hasReachedEnd = (): boolean => {
-        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().right < window.innerWidth;
+        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().left <= window.outerWidth - (itemRef?.current as HTMLAnchorElement).offsetWidth;
     }
     useLayoutEffect(() => {
         const fetchRecent = async() => {      
@@ -48,13 +48,12 @@ export default function Home({ isNavBarHidden }: HomeProps) {
             clearTimeout(wheelTimeout.current);
             const timeOut = setTimeout(() => {
                 if (e.deltaY < 0) {
-                 setWheelAmount(prev => (prev - 1) < 0 ? 0 : prev - 1)
+                    setWheelAmount(prev => (prev - 1) < 0 ? 0 : prev - 1)
                 }
                 else {
-                //  setWheelAmount(prev => (prev + 1) >= getNumberOfScroll() + 1 ? prev : prev + 1)
-                setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
+                    setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
                 }
-            }, 250)
+            }, 300)
             wheelTimeout.current = timeOut;
         }
             list.current?.addEventListener('wheel', wheelEvent)

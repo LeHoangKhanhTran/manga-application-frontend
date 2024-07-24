@@ -8,6 +8,7 @@ export const InputField = styled.div`
         margin-block-end: 2px;
         font-size: 1rem;
     }
+    
     input {
         position: relative;
         width: 100%;

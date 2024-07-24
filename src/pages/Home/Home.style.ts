@@ -54,7 +54,7 @@ export const Container = styled.div<ContainerProps>`
     }
 
     .arrow-btn:hover {
-        background: #2f333b;
+        background: var(--hover-background-color);
     }
 
     .most-popular {

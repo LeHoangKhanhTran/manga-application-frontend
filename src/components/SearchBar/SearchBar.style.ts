@@ -155,5 +155,5 @@ export const ResultSection = styled.section`
         margin-top: 10px;
         gap: .5rem;
     }
-
 `
+

@@ -12,6 +12,7 @@ interface TopBarProps {
     showNavBar: () => void,
     setProfile: () => void
 }
+
 export default function TopBar({ isNavBarHidden, showNavBar, setProfile } : TopBarProps) {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const { user } = useUserContext();

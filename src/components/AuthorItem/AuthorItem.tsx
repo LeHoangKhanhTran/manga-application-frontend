@@ -6,6 +6,7 @@ interface AuthorItemProps {
     titleQuantity: number
     onClick: () => void
 }
+
 export default function AuthorItem({ id, name, onClick, titleQuantity } : AuthorItemProps) {
     return (
         <Container to={`/author/${id}`} onClick={onClick}>

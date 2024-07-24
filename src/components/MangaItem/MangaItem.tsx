@@ -23,7 +23,7 @@ export default function MangaItem({id, url, name, status, rating, follows, onCli
         else if (window.innerWidth < 380) {
             return 18;
         }
-        return 40
+        return 40;
     }
     return (
         <Container status={status} to={`/title/${id}`} onClick={onClick}>

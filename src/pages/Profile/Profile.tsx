@@ -6,26 +6,10 @@ import { useParams } from "react-router-dom"
 import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg"
 import { splitParagraph } from "../../util";
 import ProfileItem from "../../components/ProfileItem/ProfileItem"
-import config from "../../config"
+import config from "../../config";
+import { User, Author } from "../../types"
 interface ProfileProps {
     profileType: "user" | "author",
-}
-
-interface User {
-    id: string,
-    username: string,
-    email: string,
-    avatarUrl: string,
-    role: string, 
-    mangaFollows: string[]
-}
-
-interface Author {
-    id: string,
-    name: string,
-    works: string[],
-    biography: string, 
-    avatarUrl: string
 }
 
 const getDefaultValue = (type: "user" | "author") => {
@@ -34,9 +18,9 @@ const getDefaultValue = (type: "user" | "author") => {
             id: "",
             username: "",
             email: "",
-            avatarUrl: "",
             role: "User",
-            mangaFollows: []
+            mangaFollows: [],
+            userRatings: [],
         }
     return {
         id: "",
@@ -108,9 +92,9 @@ export default function Profile({ profileType }: ProfileProps) {
                                 <div>{(profile as User).role}</div>
                             </div>
                         </dt>
-                        <div className="label">Follows ({(profile as User).mangaFollows.length})</div>
+                        <div className="label">Follows ({(profile as User).mangaFollows?.length})</div>
                         <div className="manga-list">
-                            {(profile as User).mangaFollows.map(id => {
+                            {(profile as User).mangaFollows?.map(id => {
                                 return (
                                     <ProfileItem key={id} mangaId={id}/>
                                 )

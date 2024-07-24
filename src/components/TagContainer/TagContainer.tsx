@@ -2,12 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { Container } from "./TagContainer.style";
 import axios from "axios";
 import config from "../../config";
-interface Tag {
-    id: string,
-    type: string,
-    name: string
-}
-
+import { Tag } from "../../types";
 interface TagContainerProps {
     tagIds: string[] | undefined,
     children?: ReactNode

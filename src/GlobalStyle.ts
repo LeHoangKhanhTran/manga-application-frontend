@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
         --primary-btn-color: #646cff;
         --primary-text-color: white;
         --input-background-color: #e8f0fe;
+        --item-background-color: #343746;
+        --item-background-dark-color: #292c38;
+        --hover-background-color: #2f333b;
+        --light-gray: #383e48;
         --banner-overlay-gradient: linear-gradient(67.81deg,rgba(0,0,0,.64) 35.51%,transparent);
         --banner-background: linear-gradient(to bottom,rgb(var(--md-background)/.6),rgb(var(--md-background)));
         font-family: 'League Spartan', sans-serif !important;
@@ -73,7 +77,7 @@ const GlobalStyle = createGlobalStyle`
     /* Handle */
     ::-webkit-scrollbar-thumb {
       border-radius: 4px;
-      background: #383e48; 
+      background: var(--light-gray); 
     }
 
     /* Handle on hover */
@@ -90,6 +94,19 @@ export const Main = styled.main`
   display: flex;
   color: var(--primary-text-color);
   
+  .skeleton {
+    animation: skeleton-animation 1.4s linear infinite alternate;
+  }
+
+  @keyframes skeleton-animation {
+      0% {
+        background: var(--item-background-color);
+      }
+
+      100% {
+        background: var(--item-background-dark-color);
+      }
+  }
 `
 export const MainContent = styled.div<MainContentProps>`
   margin-left: ${props => props.isNavBarHidden ? "0" : "260px"};

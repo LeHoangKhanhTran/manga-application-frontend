@@ -5,7 +5,8 @@ import { ChangeEvent, useState } from "react";
 import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { User, useUserContext } from "../../App";
+import { useUserContext } from "../../App";
+import { User } from "../../types";
 import config from "../../config";
 import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg"
 import { ReactComponent as WordMark } from "../../assets/mangadex-wordmark.svg"

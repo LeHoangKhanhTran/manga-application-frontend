@@ -16,27 +16,12 @@ import Random from './pages/Random/Random';
 import Follows from './pages/Follows/Follows';
 import TopRated from './pages/TopRated/TopRated';
 import config from './config';
-const UserContext = createContext<UserContext>({
+import { User, UserContext as UserContextType } from './types';
+
+const UserContext = createContext<UserContextType>({
   user: null,
   setUser: () => {}
 });
-export interface UserRating {
-  mangaId: string,
-  score: number
-}
-export interface User {
-  id: string,
-  username: string,
-  email: string,
-  role: string,
-  mangaFollows?: string[],
-  userRatings?: UserRating[] 
-}
-
-export interface UserContext {
-  user: User | null,
-  setUser: React.Dispatch<React.SetStateAction<User | null>>
-}
 
 export async function getUser(setUser: React.Dispatch<React.SetStateAction<User | null>>) {
   try {

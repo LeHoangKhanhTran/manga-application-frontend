@@ -19,7 +19,7 @@ export const Container = styled(Link)<ProfileItemProps>`
     padding: .5rem;
     border-radius: 4px;
     width: 100%;
-    background: #343746;
+    background: var(--item-background-color);
     max-height: 151px;
     overflow: hidden;
     color: var(--primary-text-color);

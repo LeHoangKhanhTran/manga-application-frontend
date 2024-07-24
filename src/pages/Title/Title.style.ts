@@ -164,7 +164,7 @@ export const TitleInfo = styled.div<TitleProps>`
         width: ${props => props.hasRated ? "" : "45px"};
         height: ${props => props.hasRated ? "" : "45px"};
         padding: ${props => props.hasRated ? "0 12px" : ""};
-        background: ${props => props.hasRated ? "var(--primary-btn-color)" : "#2f333b"};
+        background: ${props => props.hasRated ? "var(--primary-btn-color)" : "var(--hover-background-color)"};
         color: var(--primary-text-color);
         max-height: 45px;
     }
@@ -212,21 +212,21 @@ export const TitleInfo = styled.div<TitleProps>`
         flex-wrap: wrap;
         align-items: start;
         top: calc(100% + 5px);
-        padding: 7px .75rem 7px .75rem;
         width: fit-content;
-        background: #2f333b;
+        background: var(--hover-background-color);
         z-index: 100;
         color: var(--primary-text-color);
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 500;
     }
 
     .rate-box span {
-        padding: .35rem 0;
+        padding: 7px .75rem 7px .75rem;
         box-sizing: border-box;
         width: 100%;
         text-align: left;
         white-space: nowrap;
+        border-radius: 4px;
     }
 
 

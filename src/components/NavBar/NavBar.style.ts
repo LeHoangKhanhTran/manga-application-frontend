@@ -6,7 +6,7 @@ export const Container = styled.div`
     width: 260px;
     flex-shrink: 0;
     height: 100dvh;
-    background-color: #343746;
+    background-color: var(--item-background-color);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -66,7 +66,7 @@ export const Container = styled.div`
 
 
     .menu-option:hover, #home:hover {
-        background: #2f333b;
+        background: var(--hover-background-color);
     }
 
     .close-btn {
@@ -97,7 +97,7 @@ export const Container = styled.div`
     hr {
         width: 100%;
         height: 0;
-        border: 1px solid #383e48;
+        border: 1px solid var(--light-gray);
     }
 
     .media {

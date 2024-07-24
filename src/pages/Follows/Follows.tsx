@@ -2,7 +2,7 @@ import { Container, FollowItems } from "./Follow.style";
 import { ReactComponent as BackArrow } from '../../assets/back-arrow.svg'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { User } from "../../App";
+import { User } from "../../types";
 import axios, { AxiosResponse } from "axios";
 import ProfileItem from "../../components/ProfileItem/ProfileItem";
 import config from "../../config";
