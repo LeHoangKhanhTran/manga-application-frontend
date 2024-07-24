@@ -3,7 +3,7 @@ import TagContainer from "../TagContainer/TagContainer";
 import StatsContainer from "../StatsContainer/StatsContainer";
 import { useEffect,  useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Title } from "../../pages/Title/Title";
+import { Title } from "../../types";
 import { splitParagraph } from "../../util";
 import config from "../../config";
 import StatusBadge from "../StatusBadge/StatusBadge";

@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import SlideItem from "../SlideItem/SlideItem";
 import { Container } from "./Slider.style";
 import axios, { AxiosResponse } from "axios";
-import { Title } from "../../pages/Title/Title";
+import { Title } from "../../types";
 import config from "../../config";
 interface SliderProps {
     isNavBarHidden: boolean, 

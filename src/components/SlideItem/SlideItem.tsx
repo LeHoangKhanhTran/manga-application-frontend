@@ -1,6 +1,6 @@
 import TagContainer from "../TagContainer/TagContainer"
 import { Container } from "./SlideItem.style"
-import { Title } from "../../pages/Title/Title"
+import { Title } from "../../types";
 import { splitParagraph, transformLongText } from "../../util";
 interface SlideItemProps {
     isNavBarHidden: boolean,

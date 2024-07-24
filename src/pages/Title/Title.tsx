@@ -20,9 +20,6 @@ interface TitleProps {
 
 export default function Title({ isNavBarHidden } : TitleProps) {
     const { id } = useParams();
-    // const [title, setTitle] = useState<TitleType | null>();
-    // const [loading, setLoading] = useState<boolean>(true);
-    // const [error, setError] = useState<string | null>(null);
     const { data: title , loading, error } = useFetch<TitleType>(`api/manga/${id}`)
     const [rateActive, setRateActive] = useState<boolean>(false);
     const [userScore, setUserScore] = useState<number>(0)
@@ -31,26 +28,13 @@ export default function Title({ isNavBarHidden } : TitleProps) {
     const [follow, setFollow] = useState<number>(0);
     const [isFollowed, setIsFollowed] = useState<boolean>(false);
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         setLoading(true);
-    //         setError(null);
-    //         const title = await axios.get<TitleType>(`${config.apiUrl}/api/manga/${id}`);
-    //         setTitle(title.data);
-    //         setRatingScore(title.data['rating'])
-    //         setFollow(title.data['follows'])
-    //         console.log(title)
-    //       } 
-    //       catch (err) {
-    //         setError('Error fetching data');
-    //       } 
-    //       finally {
-    //         setLoading(false);
-    //       }
-    //     };
-    //     fetchData();
-    // }, [id]);
+    
+    useEffect(() => {
+       if (title) {
+            setRatingScore(title.rating)
+            setFollow(title.follows)
+       }
+    }, [title]);
 
     useEffect(() => {
         const rating = user?.userRatings?.find(rating => rating.mangaId === id)
