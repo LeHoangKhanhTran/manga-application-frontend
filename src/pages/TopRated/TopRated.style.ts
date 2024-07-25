@@ -26,7 +26,7 @@ export const Container = styled.div<TopRatedProps>`
     }
 
     #back-arrow:hover {
-        background: #2f333b;
+        background: var(--hover-background-color);
     }
 
     .manga-list {
@@ -130,6 +130,4 @@ export const Container = styled.div<TopRatedProps>`
         }
 
     }
-
-
 `

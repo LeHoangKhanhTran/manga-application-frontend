@@ -1,32 +1,19 @@
-import { useLayoutEffect, useState } from "react";
 import SlideItem from "../SlideItem/SlideItem";
-import { Container } from "./Slider.style";
-import axios, { AxiosResponse } from "axios";
+import { Container, LoadingItem } from "./Slider.style";
 import { Title } from "../../types";
-import config from "../../config";
+import useFetch from "../../hooks/useFetch";
 interface SliderProps {
     isNavBarHidden: boolean, 
     index: number
 }
 
-
+const numberOfItem = 5;
 export default function Slider({ isNavBarHidden, index } : SliderProps) {
-    const [items, setItems] = useState<Title[]>();
-    useLayoutEffect(() => {
-        const fetch = async() => {
-            try {
-                const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/manga/list?numberOfItem=5`);
-                setItems(_prev => response.data)
-            }
-            catch (error) {
-                console.log(error)
-            }
-        }
-        fetch();
-    }, [])
+    const { data: items, loading } = useFetch<Title[]>(`/api/manga/list?numberOfItem=${numberOfItem}`);
     return (
         <Container>
-            {items && items.map((item) => {
+            {loading && <LoadingItem className="skeleton"/>}
+            {!loading && items?.map((item) => {
                     return <SlideItem item={item as Title} isNavBarHidden={isNavBarHidden} index={index}/>
             })}
         </Container>

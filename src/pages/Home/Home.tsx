@@ -1,12 +1,11 @@
-import { Container } from "./Home.style";
+import { Container, LoadingItem } from "./Home.style";
 import { ReactComponent as LeftArrow } from "../../assets/left-arrow.svg"
 import { ReactComponent as RightArrow } from "../../assets/right-arrow.svg"
 import Slider from "../../components/Slider/Slider";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { transformLongText } from "../../util";
-import config from "../../config";
+import useFetch from "../../hooks/useFetch";
 interface HomeProps {
     isNavBarHidden: boolean
 }
@@ -17,9 +16,10 @@ interface RecentItem {
     imageUrl: string
 }
 
+const numberOfItem = 10;
 export default function Home({ isNavBarHidden }: HomeProps) {
     const [index, setIndex] = useState<number>(0);
-    const [recentManga, setRecentManga] = useState<RecentItem[]>([]);
+    const { data: recentManga, loading } = useFetch<RecentItem[]>(`/api/manga/recently-added?numberOfItem=${numberOfItem}`);
     const nextIndex = () => setIndex(prev => (5 + prev + 1) % 5);
     const prevIndex = () => setIndex(prevIndex => (5 + prevIndex - 1) % 5)
     const list= useRef<HTMLDivElement | null>(null);
@@ -29,18 +29,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
     const hasReachedEnd = (): boolean => {
         return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().left <= window.outerWidth - (itemRef?.current as HTMLAnchorElement).offsetWidth;
     }
-    useLayoutEffect(() => {
-        const fetchRecent = async() => {      
-            try {
-                const response: AxiosResponse = await axios.get(`${config.apiUrl}/api/manga/recently-added?numberOfItem=10`)
-                setRecentManga(_prev => response.data as RecentItem[])
-            }
-            catch(error) {
-                console.log(error)
-            }
-        }
-        fetchRecent()
-    }, [])
+    
 
     useEffect(() => {
         const wheelEvent = (e: WheelEvent) => {
@@ -86,7 +75,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
             <section className="recent">
                 <h2>Recently Added</h2>
                 <div className="list" ref={list}>
-                    {recentManga.map((manga, i) => {
+                    {!loading && recentManga?.map((manga, i) => {
                         if (i < recentManga.length - 1) {
                             return (
                                 <Link to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
@@ -102,6 +91,15 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                             </Link>
                         )
                     })}
+                    {loading && Array.apply(null, Array(10)).map(() => {
+                        return (
+                            <LoadingItem isNavBarHidden={isNavBarHidden}>
+                                <div className="img-holder skeleton"></div>
+                                <div className="text-holder skeleton"></div>
+                            </LoadingItem>
+                        )
+                    })}
+                    
                 </div>  
             </section>
         </Container>

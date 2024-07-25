@@ -27,7 +27,13 @@ export const Container = styled.div<FollowsProps>`
     }
 
     #back-arrow:hover {
-        background: #2f333b;
+        background: var(--hover-background-color);
+    }
+
+    #no-follow-holder {
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
     }
 
     @media screen and (max-width: 980px){

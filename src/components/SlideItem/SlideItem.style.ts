@@ -122,6 +122,5 @@ export const Container = styled(Link)<ContainerProps>`
             display: none;
         }
     }
-
-    
 `
+

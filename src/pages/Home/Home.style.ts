@@ -74,7 +74,6 @@ export const Container = styled.div<ContainerProps>`
         padding: 10px 0;
         white-space: nowrap;
         overflow-x: hidden;
-        
     }
     
     .list-item {
@@ -137,10 +136,11 @@ export const Container = styled.div<ContainerProps>`
 
         .list-item {
             width: calc((100% - 40px) / 5);
+            height: 170px;
         }
 
         .list-item > img{   
-            height: 207px;
+            height: inherit;
         }
 
         .list-item > div {
@@ -216,5 +216,27 @@ export const Container = styled.div<ContainerProps>`
         }
 
     }
+`
 
+export const LoadingItem = styled.div<ContainerProps>`
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: ${props => props.isNavBarHidden ? 'calc((100% - 90px) / 10)' : 'calc((100% - 80px) / 9)'};
+    height: calc(192px + 5.2rem);
+    border-radius: 4px;
+
+    .img-holder {
+        width: 100%;
+        height: ${props => props.isNavBarHidden ? '210px' : '193px'};
+    }
+
+    .text-holder {
+        width: 100%;
+        height: 15px;
+        position: absolute;
+        display: inline;
+        top: ${props => props.isNavBarHidden ? 'calc(210px + 7px)' : 'calc(192px + 7px)'};
+        border-radius: inherit;
+    }
 `
