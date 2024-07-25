@@ -2,11 +2,8 @@ import { Container } from "./TopRated.style"
 import { ReactComponent as BackArrow } from "../../assets/back-arrow.svg";
 import { ReactComponent as StarIcon } from "../../assets/star.svg"
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { Title } from "../../types";
-import axios from "axios";
 import { splitParagraph, transformLongText } from "../../util";
-import config from "../../config";
 import useFetch from "../../hooks/useFetch";
 import Spinner from "../../components/Spinner/Spinner";
 interface TopRatedProps {
