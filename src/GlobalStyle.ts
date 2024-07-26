@@ -107,6 +107,29 @@ export const Main = styled.main`
         background: var(--item-background-dark-color);
       }
   }
+
+  .shimmer {
+    color: grey;
+    display: inline-block;
+    mask: linear-gradient(
+        120deg,
+        rgba(0, 0, 0, 1) 20%, 
+        rgba(0, 0, 0, 0.8) 30%, 
+        rgba(0, 0, 0, 0.5) 40%, 
+        rgba(0, 0, 0, 0.3) 50%, 
+        rgba(0, 0, 0, 0.2) 60%, 
+        rgba(0, 0, 0, 0.1) 70%, 
+        rgba(0, 0, 0, 0) 80%
+    ) right/250% 100%;
+    animation: shimmer 2.5s  infinite;
+    background-repeat: no-repeat;
+}
+
+@keyframes shimmer {
+    100% {
+        -webkit-mask-position: left;
+    }
+}
 `
 export const MainContent = styled.div<MainContentProps>`
   margin-left: ${props => props.isNavBarHidden ? "0" : "260px"};

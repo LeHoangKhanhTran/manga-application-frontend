@@ -1,39 +1,29 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { Container } from "./TagContainer.style";
-import axios from "axios";
-import config from "../../config";
 import { Tag } from "../../types";
+import { useMultipleFetch } from "../../hooks/useFetch";
 interface TagContainerProps {
     tagIds: string[] | undefined,
     children?: ReactNode
 }
 
 export default function TagContainer({ tagIds, children }: TagContainerProps) {
-
-    const [tags, setTags] = useState<Tag[] | null>(null);
-    useEffect(() => {
-        const fetchTags  = async () => {
-            try {
-                const requests = tagIds?.map((id) => axios.get<Tag>(`${config.apiUrl}/api/tag/${id}`));
-                if (requests) {
-                    const tagsResponse = await axios.all(requests)
-                    setTags(_prev => tagsResponse.map(response => response.data));
-                }
-            }
-            catch(error)
-            {
-                console.log(error)
-            }
-        }
-        fetchTags();
-    }, [tagIds])
+    const { data: tags, loading } = useMultipleFetch<Tag, string>(tagIds as string[], '/api/tag');
     return (
         <Container>
-            {tags ? tags?.map((tag) => {
+            {!loading && tags?.map((tag) => {
                 return (
                     <div className="tag">{tag.name}</div>
                 )
-            }) : <div>No Tags</div>}
+            })}
+            {!loading && (!tags || tags.length === 0) && <div>No Tags</div>}
+            {loading && 
+                <>
+                    <div className="tag skeleton" style={{width: '50px', height: '18px'}}></div>
+                    <div className="tag skeleton" style={{width: '50px', height: '18px'}}></div>
+                    <div className="tag skeleton" style={{width: '50px', height: '18px'}}></div>
+                </>
+            }
             {children}
         </Container>
     )

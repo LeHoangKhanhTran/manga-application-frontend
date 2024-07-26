@@ -233,7 +233,7 @@ export const LoadingItem = styled.div<ContainerProps>`
 
     .text-holder {
         width: 100%;
-        height: 15px;
+        height: 18px;
         position: absolute;
         display: inline;
         top: ${props => props.isNavBarHidden ? 'calc(210px + 7px)' : 'calc(192px + 7px)'};

@@ -14,6 +14,7 @@ import config from "../../config";
 import StatusBadge from "../../components/StatusBadge/StatusBadge";
 import { Title as TitleType } from "../../types";
 import useFetch from "../../hooks/useFetch";
+import Spinner from "../../components/Spinner/Spinner";
 interface TitleProps {
     isNavBarHidden: boolean
 }
@@ -57,7 +58,6 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         try {
             const response: AxiosResponse = await axios.post(`${config.apiUrl}/api/manga/${id}/rating`, data);
             setRatingScore(_prev => response.data['updatedRating']);
-            console.log(ratingScore)
             getUser(setUser);
         }
         catch(error) {
@@ -72,7 +72,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
             navigate('../login')
         }
         const data = {
-            userId: user?.id,
+            userId: user?.id,   
             score: user?.userRatings?.find(rating => rating.mangaId === id)?.score,
         }
         try {
@@ -86,6 +86,10 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         finally {
             setRateActive(_prev => false)
         }
+    }
+
+    if (error) {
+        console.log(error);
     }
 
     const handleFollow = async (follow: boolean) => {
@@ -103,73 +107,105 @@ export default function Title({ isNavBarHidden } : TitleProps) {
         }
     }
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+    if (!loading) 
+        return (
+            <Container>
+                <div className="title-banner" style={{backgroundImage: `url(${title?.imageUrl})`}}></div>
+                <TitleInfo isNavBarHidden={isNavBarHidden} status={title?.status} hasRated={userScore > 0}>
+                    <div className="background" style={{background: `radial-gradient(circle at top, rgb(40 42 54 / 0.8), rgb(40 42 54) 75%), no-repeat top 35% center / 100% url(${title?.imageUrl})`}}></div>
+                    <img src={title?.imageUrl} alt="title-img" />
+                    <section className="title-name">
+                        <p id="name">{title?.title}</p>
+                        <p id="author">{title?.author.authorName}</p>
+                    </section>
+                    <section className="buttons">
+                        <button className="bookmark-btn" onClick={() => handleFollow(!isFollowed)}>
+                            {isFollowed ? <FollowedIcon /> : <BookmarkIcon/>}
+                            <span>{isFollowed ? "Unfollow" : "Follow"}</span>
+                        </button>
+                        <button className="rate-btn" onClick={() => setRateActive(prev => !prev)}>
+                            <StarIcon stroke="white"/> 
+                            {userScore > 0 && <div id='score'>{userScore}</div>}
+                            {rateActive && 
+                                <div className="rate-box">
+                                    <span onClick={() => rateManga(10)}>(10) Masterpiece</span>
+                                    <span onClick={() => rateManga(9)}> (9) Great</span>
+                                    <span onClick={() => rateManga(8)}> (8) Very Good</span>
+                                    <span onClick={() => rateManga(7)}> (7) Good</span>
+                                    <span onClick={() => rateManga(6)}> (6) Find</span>
+                                    <span onClick={() => rateManga(5)}> (5) Average</span>
+                                    <span onClick={() => rateManga(4)}> (4) Bad</span>
+                                    <span onClick={() => rateManga(3)}> (3) Very Bad</span>
+                                    <span onClick={() => rateManga(2)}> (2) Horrible</span>
+                                    <span onClick={() => rateManga(1)}> (1) Appaling</span>
+                                    {userScore > 0 && <span onClick={removeRate}>Remove Rating</span>}
+                                </div>}
+                        </button>
+                    </section>
+                    <section className="info">
+                        <TagContainer tagIds={title?.tagIds}>
+                            <StatusBadge status={title?.status} showPublication={true} showBackground={false} isUppercase={true}/>
+                        </TagContainer>
+                    </section>
+                    <section className="stats">
+                        <div className="rate">
+                            <StarIcon className="icon" width="16px" height="16px"/> 
+                            <span>{ratingScore > 0 ? ratingScore : "Not Rated"}</span>
+                        </div>
+                        <div className="bookmark">
+                            <BookmarkIcon className="icon" width="16px" height="16px"/>
+                            <span>{follow}</span>
+                        </div>
+                        <div className="visibility">
+                            <EyeIcon className="icon" width="16px" height="16px"/>
+                            <span>N/A</span>
+                        </div>
+                    </section>
+                    <div className="summary">{
+                        title ? splitParagraph(title.summary).map((paragraph) => {
+                            return <p>{paragraph}</p>
+                        }) : "No summary"
+                    }</div>
+                </TitleInfo>
+            </Container>
+        )
 
-    if (error) {
-      return <div>{error}</div>;
-    }
+        if (loading) 
+            return (
+                <Container>
+                    <div className="title-banner shimmer"></div>
+                    <TitleInfo isNavBarHidden={isNavBarHidden} status={title?.status} hasRated={userScore > 0}>
+                        <div className="img-holder skeleton"></div>
+                        <section className="buttons" style={{marginTop: '230px'}}>
+                            <button className="bookmark-btn">
+                                <Spinner size="1.4rem"/>
+                            </button>
+                            <button className="rate-btn">
+                                <Spinner size="1.4rem"/>
+                            </button>
+                        </section>
+                        <section className="info">
+                            <TagContainer tagIds={title?.tagIds}>
+                                <StatusBadge status={title?.status} showPublication={true} showBackground={false} isUppercase={true}/>
+                            </TagContainer>
+                        </section>
+                        <section className="stats">
+                            <div className="rate">
+                                <StarIcon className="icon" width="16px" height="16px"/> 
+                                <div className="skeleton" style={{width: '1rem', height: '1.25rem'}}></div>
+                            </div>
+                            <div className="bookmark">
+                                <BookmarkIcon className="icon" width="16px" height="16px"/>
+                                <div className="skeleton" style={{width: '1rem', height: '1.25rem'}}></div>
+                            </div>
+                            <div className="visibility">
+                                <EyeIcon className="icon" width="16px" height="16px"/>
+                                <span>N/A</span>
+                            </div>
+                        </section>
+                    </TitleInfo>
+                </Container>
+            )
 
-    return (
-        <Container>
-            <div className="title-banner" style={{backgroundImage: `url(${title?.imageUrl})`}}></div>
-            <TitleInfo isNavBarHidden={isNavBarHidden} status={title?.status} hasRated={userScore > 0}>
-                <div className="background" style={{background: `radial-gradient(circle at top, rgb(40 42 54 / 0.8), rgb(40 42 54) 75%), no-repeat top 35% center / 100% url(${title?.imageUrl})`}}></div>
-                <img src={title?.imageUrl} alt="title-img" />
-                <section className="title-name">
-                    <p id="name">{title?.title}</p>
-                    <p id="author">{title?.author.authorName}</p>
-                </section>
-                <section className="buttons">
-                    <button className="bookmark-btn" onClick={() => handleFollow(!isFollowed)}>
-                        {isFollowed ? <FollowedIcon /> : <BookmarkIcon/>}
-                        <span>{isFollowed ? "Unfollow" : "Follow"}</span>
-                    </button>
-                    <button className="rate-btn" onClick={() => setRateActive(prev => !prev)}>
-                        <StarIcon stroke="white"/> 
-                        {userScore > 0 && <div id='score'>{userScore}</div>}
-                        {rateActive && 
-                            <div className="rate-box">
-                                <span onClick={() => rateManga(10)}>(10) Masterpiece</span>
-                                <span onClick={() => rateManga(9)}> (9) Great</span>
-                                <span onClick={() => rateManga(8)}> (8) Very Good</span>
-                                <span onClick={() => rateManga(7)}> (7) Good</span>
-                                <span onClick={() => rateManga(6)}> (6) Find</span>
-                                <span onClick={() => rateManga(5)}> (5) Average</span>
-                                <span onClick={() => rateManga(4)}> (4) Bad</span>
-                                <span onClick={() => rateManga(3)}> (3) Very Bad</span>
-                                <span onClick={() => rateManga(2)}> (2) Horrible</span>
-                                <span onClick={() => rateManga(1)}> (1) Appaling</span>
-                                {userScore > 0 && <span onClick={removeRate}>Remove Rating</span>}
-                            </div>}
-                    </button>
-                </section>
-                <section className="info">
-                    <TagContainer tagIds={title?.tagIds}>
-                        <StatusBadge status={title?.status} showPublication={true} showBackground={false} isUppercase={true}/>
-                    </TagContainer>
-                </section>
-                <section className="stats">
-                    <div className="rate">
-                        <StarIcon className="icon" width="16px" height="16px"/> 
-                        <span>{ratingScore > 0 ? ratingScore : "Not Rated"}</span>
-                    </div>
-                    <div className="bookmark">
-                        <BookmarkIcon className="icon" width="16px" height="16px"/>
-                        <span>{follow}</span>
-                    </div>
-                    <div className="visibility">
-                        <EyeIcon className="icon" width="16px" height="16px"/>
-                        <span>N/A</span>
-                    </div>
-                </section>
-                <div className="summary">{
-                    title ? splitParagraph(title.summary).map((paragraph) => {
-                        return <p>{paragraph}</p>
-                    }) : "No summary"
-                }</div>
-            </TitleInfo>
-        </Container>
-    )
+    
 }

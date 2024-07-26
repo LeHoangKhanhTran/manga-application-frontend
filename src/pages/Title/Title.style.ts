@@ -63,7 +63,7 @@ export const TitleInfo = styled.div<TitleProps>`
         z-index: -1;
     }
 
-    img {
+    img, .img-holder {
         grid-area: img;
         height: 300px;
         border-radius: 4px;
