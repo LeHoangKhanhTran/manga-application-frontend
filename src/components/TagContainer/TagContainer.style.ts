@@ -5,7 +5,7 @@ export const Container = styled.section`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 2px;
+    column-gap: 5px;
     row-gap: 2px;
 
     .tag {

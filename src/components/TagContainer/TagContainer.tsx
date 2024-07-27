@@ -19,9 +19,9 @@ export default function TagContainer({ tagIds, children }: TagContainerProps) {
             {!loading && (!tags || tags.length === 0) && <div>No Tags</div>}
             {loading && 
                 <>
-                    <div className="tag skeleton" style={{width: '50px', height: '18px'}}></div>
-                    <div className="tag skeleton" style={{width: '50px', height: '18px'}}></div>
-                    <div className="tag skeleton" style={{width: '50px', height: '18px'}}></div>
+                    <div className="tag skeleton" style={{width: '4em', height: '1.5em'}}></div>
+                    <div className="tag skeleton" style={{width: '4em', height: '1.5em'}}></div>
+                    <div className="tag skeleton" style={{width: '4em', height: '1.5em'}}></div>
                 </>
             }
             {children}

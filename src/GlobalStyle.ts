@@ -121,7 +121,7 @@ export const Main = styled.main`
         rgba(0, 0, 0, 0.1) 70%, 
         rgba(0, 0, 0, 0) 80%
     ) right/250% 100%;
-    animation: shimmer 2.5s  infinite;
+    animation: shimmer 2.5s alternate infinite;
     background-repeat: no-repeat;
 }
 

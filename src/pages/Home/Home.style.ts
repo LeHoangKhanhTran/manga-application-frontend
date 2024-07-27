@@ -73,7 +73,7 @@ export const Container = styled.div<ContainerProps>`
         margin-top: 35px;
         padding: 10px 0;
         white-space: nowrap;
-        overflow-x: hidden;
+        overflow: hidden;
     }
     
     .list-item {
@@ -208,11 +208,11 @@ export const Container = styled.div<ContainerProps>`
         }
 
         .list-item > img {
-            height: 170px;
+            height: 160px;
         }
 
         .list-item > div {
-            top: calc(170px + 7px)
+            top: calc(160px + 7px)
         }
 
     }
@@ -231,12 +231,45 @@ export const LoadingItem = styled.div<ContainerProps>`
         height: ${props => props.isNavBarHidden ? '210px' : '193px'};
     }
 
-    .text-holder {
-        width: 100%;
-        height: 18px;
-        position: absolute;
-        display: inline;
-        top: ${props => props.isNavBarHidden ? 'calc(210px + 7px)' : 'calc(192px + 7px)'};
-        border-radius: inherit;
+    @media screen and (min-width: 1350){
+        width: calc((100% - 90px) / 10);
+    }
+
+    @media screen and (max-width: 1300px){
+        width: calc((100% - 60px) / 7);
+    }
+
+    @media screen and (max-width: 980px){
+        width: calc((100% - 50px) / 6);
+    }
+
+    @media screen and (max-width: 800px){
+        width: calc((100% - 40px) / 5);
+        height: 170px;
+
+        .list-item > div {
+            top: 220px
+        }
+    }
+
+    @media screen and (max-width: 680px){
+        width: calc((100% - 30px) / 4);
+    }
+
+    @media screen and (max-width: 580px) {
+        .list-item > img {
+            height: 200px;
+        }
+
+        .list-item > div {
+            top: calc(200px + 7px)
+        }
+
+    }
+
+    @media screen and (max-width: 490px){
+        width: calc((100% - 20px) / 3);
+        height: 160px;
     }
 `
+

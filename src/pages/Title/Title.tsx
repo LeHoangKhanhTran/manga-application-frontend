@@ -176,7 +176,8 @@ export default function Title({ isNavBarHidden } : TitleProps) {
                     <div className="title-banner shimmer"></div>
                     <TitleInfo isNavBarHidden={isNavBarHidden} status={title?.status} hasRated={userScore > 0}>
                         <div className="img-holder skeleton"></div>
-                        <section className="buttons" style={{marginTop: '230px'}}>
+                        <div style={{height: '227px'}}></div>
+                        <section className="buttons">
                             <button className="bookmark-btn">
                                 <Spinner size="1.4rem"/>
                             </button>

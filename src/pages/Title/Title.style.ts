@@ -266,7 +266,7 @@ export const TitleInfo = styled.div<TitleProps>`
         grid-row-gap: 10px;
         grid-column-gap: 15px;
 
-        img {
+        img, .img-holder {
             max-width: 135px;
             height: 200px;
         }
@@ -310,7 +310,7 @@ export const TitleInfo = styled.div<TitleProps>`
             width: 10px;
             height: 10px;
         }
-        grid-template-columns: 126px 1fr;
+        grid-template-columns: 130px 1fr;
         padding: 0 10px;
     }
 
