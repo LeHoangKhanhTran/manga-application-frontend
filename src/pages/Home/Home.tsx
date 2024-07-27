@@ -75,7 +75,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
             <section className="recent">
                 <h2>Recently Added</h2>
                 <div className="list" ref={list}>
-                    {/* {!loading && recentManga?.map((manga, i) => {
+                    {!loading && recentManga?.map((manga, i) => {
                         if (i < recentManga.length - 1) {
                             return (
                                 <Link to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
@@ -90,8 +90,8 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                                 <div>{transformLongText(manga.title, 26)}</div>
                             </Link>
                         )
-                    })} */}
-                    {!loading && Array.apply(null, Array(10)).map(() => {
+                    })}
+                    {loading && Array.apply(null, Array(10)).map(() => {
                         return (
                             <LoadingItem isNavBarHidden={isNavBarHidden}>
                                 <div className="img-holder skeleton"></div>

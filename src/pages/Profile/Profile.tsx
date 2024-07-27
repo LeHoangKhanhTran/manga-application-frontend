@@ -1,36 +1,33 @@
 import { Container, ProfileInfo } from "./Profile.style"
 import catImg from "../../assets/dex-cat.png"
-import { useEffect, useState } from "react"
-import axios, { AxiosResponse } from "axios"
 import { useParams } from "react-router-dom"
 import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg"
 import { splitParagraph } from "../../util";
 import ProfileItem from "../../components/ProfileItem/ProfileItem"
-import config from "../../config";
 import { User, Author } from "../../types"
 import useFetch from "../../hooks/useFetch"
 interface ProfileProps {
     profileType: "user" | "author",
 }
 
-const getDefaultValue = (type: "user" | "author") => {
-    if (type === "user") 
-        return {
-            id: "",
-            username: "",
-            email: "",
-            role: "User",
-            mangaFollows: [],
-            userRatings: [],
-        }
-    return {
-        id: "",
-        name: "",
-        works: [],
-        biography: "", 
-        avatarUrl: ""
-    }
-}
+// const getDefaultValue = (type: "user" | "author") => {
+//     if (type === "user") 
+//         return {
+//             id: "",
+//             username: "",
+//             email: "",
+//             role: "User",
+//             mangaFollows: [],
+//             userRatings: [],
+//         }
+//     return {
+//         id: "",
+//         name: "",
+//         works: [],
+//         biography: "", 
+//         avatarUrl: ""
+//     }
+// }
 
 const path = {
     user: '/api/user/me',
@@ -41,41 +38,9 @@ export default function Profile({ profileType }: ProfileProps) {
     const { authorId } = useParams();
     // const [profile, setProfile] = useState<User | Author>(getDefaultValue(profileType));
     const {data: profile, loading, error} = useFetch<User | Author>(`${path[profileType]}${profileType === 'author' ? '/' + authorId : ''}`, undefined, profileType === 'user');
-    // const { user } = useUserContext();
     if (error) {
         console.log(error);
     }
-    // useEffect(() => {
-    //     async function getAuthor() {
-    //         try {
-    //             const response: AxiosResponse = await axios.get<Author>(`${config.apiUrl}/api/author/${authorId}`);
-    //             if (response.data) {
-    //                 setProfile(_prev => response.data)
-    //             }
-    //         }
-    //         catch(error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     async function getUser() {
-    //         try {
-    //             const response: AxiosResponse = await axios.get<User>(`${config.apiUrl}/api/user/me`, { withCredentials: true});
-    //             if (response.data) {
-    //                 setProfile(_prev => response.data)
-    //             }
-    //         }
-    //         catch(error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     if (profileType === "user") {
-    //         getUser();  
-  
-    //     }
-    //     else {
-    //         getAuthor()
-    //     }
-    // }, [authorId, profileType])
 
     if (!loading && profile) {
         if (profileType === "user") {
