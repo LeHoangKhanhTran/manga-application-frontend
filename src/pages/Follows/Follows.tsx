@@ -1,4 +1,4 @@
-import { Container, FollowItems } from "./Follow.style";
+import { Container, FollowItems } from "./Follows.style";
 import { ReactComponent as BackArrow } from '../../assets/back-arrow.svg'
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";

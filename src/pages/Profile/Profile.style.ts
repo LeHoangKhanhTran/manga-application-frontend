@@ -159,7 +159,9 @@ export const ProfileInfo = styled.div`
         "info info";
         grid-template-rows: 75px 75px 75px 75px;
         grid-column-gap: 0;
+        
         .buttons {
+            width: 80%;
             justify-content: end;
         }
 

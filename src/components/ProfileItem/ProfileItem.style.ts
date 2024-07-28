@@ -76,6 +76,7 @@ export const Container = styled(Link)<ProfileItemProps>`
         font-size: 13px;
         .tags {
             margin-top: 0;
+            font-size: 12px;
         }
     }
 

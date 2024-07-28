@@ -70,10 +70,12 @@ export const Container = styled.div<ContainerProps>`
     }
 
     .list {
+        position: relative;
         margin-top: 35px;
         padding: 10px 0;
         white-space: nowrap;
         overflow: hidden;
+        min-height: 280px;
     }
     
     .list-item {
@@ -118,6 +120,13 @@ export const Container = styled.div<ContainerProps>`
     }
 
     @media screen and (max-width: 980px){
+        .recent {
+            padding: 0 1rem;
+        }
+
+        .recent > h2 {
+            font-size: 1.5rem;
+        }
         .list-item {
             width: calc((100% - 50px) / 6);
         }
@@ -136,7 +145,7 @@ export const Container = styled.div<ContainerProps>`
 
         .list-item {
             width: calc((100% - 40px) / 5);
-            height: 170px;
+            height: 190px;
         }
 
         .list-item > img{   
@@ -144,7 +153,7 @@ export const Container = styled.div<ContainerProps>`
         }
 
         .list-item > div {
-            top: 220px
+            top: 200px
         }
     }
 
