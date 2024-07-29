@@ -27,10 +27,20 @@ export default function Home({ isNavBarHidden }: HomeProps) {
     const wheelTimeout = useRef(-1);
     const itemRef = useRef<HTMLAnchorElement | null>(null);
     const hasReachedEnd = (): boolean => {
-        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().left <= window.outerWidth - (itemRef?.current as HTMLAnchorElement).offsetWidth;
+        return (itemRef?.current as HTMLAnchorElement).getBoundingClientRect().left <= window.innerWidth + (itemRef?.current as HTMLAnchorElement).offsetWidth;
     }
-    
-
+    if (itemRef.current && hasReachedEnd()) {
+        if (list.current?.children) {
+            const newElements = Array.from(list.current?.children) as HTMLElement[];
+            newElements.forEach((element, i) => {
+                const node = element.cloneNode(true) as HTMLElement;
+                list.current?.appendChild(node);
+                if (recentManga &&i === recentManga?.length - 1) {
+                    itemRef.current = node as HTMLAnchorElement;
+                }
+            })
+        }
+    }
     useEffect(() => {
         const wheelEvent = (e: WheelEvent) => {
             e.preventDefault()        
@@ -40,9 +50,10 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                     setWheelAmount(prev => (prev - 1) < 0 ? 0 : prev - 1)
                 }
                 else {
-                    setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
+                    //setWheelAmount(prev => hasReachedEnd() ? prev : prev + 1)
+                    setWheelAmount(prev => prev + 1)
                 }
-            }, 300)
+            }, 700)
             wheelTimeout.current = timeOut;
         }
             list.current?.addEventListener('wheel', wheelEvent)
@@ -51,12 +62,11 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                     list.current?.removeEventListener('wheel',wheelEvent)
                     if (wheelTimeout) {
                         clearTimeout(wheelTimeout.current);
-                      }
+                    }
                 }
             )
             
     }, [])
-
     return (
         <Container isNavBarHidden={isNavBarHidden}>
             <h2 className="featured-titles">Featured Titles</h2>
@@ -74,23 +84,53 @@ export default function Home({ isNavBarHidden }: HomeProps) {
             </div>
             <section className="recent">
                 <h2>Recently Added</h2>
-                <div className="list" ref={list}>
+                <div className="list-container">
+                    <div className="list" ref={list} style={{transform: itemRef.current ? `translateX(calc(-${itemRef.current.offsetWidth * wheelAmount}px - ${wheelAmount * 0.6}rem))` : 'translateX(0)'} }>
                     {!loading && recentManga?.map((manga, i) => {
-                        if (i < recentManga.length - 1) {
+                        if (i === recentManga.length - 1) {
                             return (
-                                <Link to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
+                                <Link ref={itemRef} to={`../title/${manga.id}`} className="list-item">
                                     <img src={manga.imageUrl} alt="recent-manga-img" />
                                     <div>{transformLongText(manga.title, 26)}</div>
                                 </Link>
                             )
                         }
-                        return (
-                            <Link ref={itemRef} to={`../title/${manga.id}`} className="list-item" style={{transform: `translateX(calc(${-100 * wheelAmount }% - ${wheelAmount* 10}px)`}}>
-                                <img src={manga.imageUrl} alt="recent-manga-img" />
-                                <div>{transformLongText(manga.title, 26)}</div>
-                            </Link>
-                        )
+                        else {
+                            return (
+                                <Link to={`../title/${manga.id}`} className="list-item">
+                                    <img src={manga.imageUrl} alt="recent-manga-img" />
+                                    <div>{transformLongText(manga.title, 26)}</div>
+                                </Link>
+                            )
+                        }
                     })}
+                    </div>
+                    {!loading && 
+                        <div className="dot-container">
+                            {Array.apply(null, Array(numberOfItem)).map((_, i) => {
+                                if (i == (wheelAmount % 10)) {
+                                    return (
+                                        <span className="dot active"></span>
+                                    )
+                                }
+                                else if (i == (wheelAmount % 10) - 1 || i == (wheelAmount % 10) + 1) {
+                                    return (
+                                        <span className="dot inactive"></span>
+                                    )
+                                }
+                                else if (i == (wheelAmount % 10) - 2 || i == (wheelAmount % 10) + 2) {
+                                    return (
+                                        <span className="dot inactive rear"></span>
+                                    )
+                                }
+                                else {
+                                    return (
+                                        <span className="dot invisible"></span>
+                                    )
+                                }
+                            })}
+                        </div>
+                    }
                     {loading && Array.apply(null, Array(10)).map(() => {
                         return (
                             <LoadingItem isNavBarHidden={isNavBarHidden}>

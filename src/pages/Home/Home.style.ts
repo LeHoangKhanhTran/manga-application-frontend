@@ -69,22 +69,28 @@ export const Container = styled.div<ContainerProps>`
         left: 0;
     }
 
-    .list {
+    .list-container {
         position: relative;
+        min-width: 100%;
+        overflow: hidden;
+    }
+
+    .list {
         margin-top: 35px;
         padding: 10px 0;
-        white-space: nowrap;
-        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: .6rem;
         min-height: 280px;
+        transition: transform 1.5s;
     }
     
     .list-item {
         position: relative;
-        display: inline-block;
+        flex: 1 0 auto;
         width: ${props => props.isNavBarHidden ? 'calc((100% - 90px) / 10)' : 'calc((100% - 80px) / 9)'};
         height: calc(192px + 5.2rem);
         font-size: 1.05rem;
-        margin-right: 10px;
         transition: transform 1.8s;
         color: var(--primary-text-color);
         overflow: visible;
@@ -105,6 +111,38 @@ export const Container = styled.div<ContainerProps>`
         top: ${props => props.isNavBarHidden ? 'calc(210px + 7px)' : 'calc(192px + 7px)'};
         text-align: center;
         font-size: .95rem;
+    }
+
+    .dot-container {
+        position: absolute;
+        bottom: .5rem;
+        width: 100%;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .dot {
+        border-radius: 50%;
+    }
+
+    .active {
+        width: .5rem;
+        height: .5rem;
+        background: var(--primary-btn-color);
+    }
+
+    .inactive {
+        width: .35rem;
+        height: .35rem;
+        background: var(--item-background-color);
+    }
+
+    .rear {
+        width: .24rem;
+        height: .24rem;
     }
 
     @media screen and (min-width: 1350){
