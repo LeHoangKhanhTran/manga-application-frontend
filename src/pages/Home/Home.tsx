@@ -104,6 +104,13 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                             )
                         }
                     })}
+                    {loading && Array.apply(null, Array(10)).map(() => {
+                        return (
+                            <LoadingItem isNavBarHidden={isNavBarHidden}>
+                                <div className="img-holder skeleton"></div>
+                            </LoadingItem>
+                        )
+                    })}
                     </div>
                     {!loading && 
                         <div className="dot-container">
@@ -130,15 +137,7 @@ export default function Home({ isNavBarHidden }: HomeProps) {
                                 }
                             })}
                         </div>
-                    }
-                    {loading && Array.apply(null, Array(10)).map(() => {
-                        return (
-                            <LoadingItem isNavBarHidden={isNavBarHidden}>
-                                <div className="img-holder skeleton"></div>
-                            </LoadingItem>
-                        )
-                    })}
-                    
+                    }                    
                 </div>  
             </section>
         </Container>
