@@ -1,12 +1,12 @@
 import { Container, ResultSection } from "./SearchBar.style";
 import { LoadingItem } from "../MangaItem/MangaItem.style";
-import { ReactComponent as SearchIcon } from "../../assets/search.svg";
+import { ReactComponent as SearchIcon } from "../../../assets/search.svg";
 import { ChangeEvent, useState } from "react";
 import MangaItem from "../MangaItem/MangaItem";
 import AuthorItem from "../AuthorItem/AuthorItem";
 import axios, { AxiosResponse } from "axios";
-import config from "../../config";
-import { AuthorResult, MangaResult } from "../../types";
+import config from "../../../config";
+import { AuthorResult, MangaResult } from "../../../types";
 
 interface SearchBarProps {
     // isFocused: boolean,

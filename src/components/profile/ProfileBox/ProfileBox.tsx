@@ -1,12 +1,12 @@
 import { Container, Profile, Options } from "./ProfileBox.style";
-import { ReactComponent as PersonIcon } from "../../assets/person.svg"
-import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg"
-import { ReactComponent as SignOutIcon } from "../../assets/signout.svg"
+import { ReactComponent as PersonIcon } from "../../../assets/person.svg"
+import { ReactComponent as BookmarkIcon } from "../../../assets/bookmark.svg"
+import { ReactComponent as SignOutIcon } from "../../../assets/signout.svg"
 import axios, { AxiosResponse } from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { useUserContext } from "../../App";
-import catImg from "../../assets/dex-cat.png";
-import config from "../../config";
+import { useUserContext } from "../../../App";
+import catImg from "../../../assets/dex-cat.png";
+import config from "../../../config";
 interface ProfileBoxProps {
     onClick: () => void
 }

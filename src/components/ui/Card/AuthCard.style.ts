@@ -67,6 +67,6 @@ export const Card = styled.div`
     @media screen and (max-width: 680px){
         padding: 20px;
         width: 80vw;
-        min-width: 330px;
+        min-width: 350px;
     }
 `

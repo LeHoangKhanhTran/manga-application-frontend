@@ -14,7 +14,7 @@ import config from "../../config";
 import StatusBadge from "../../components/StatusBadge/StatusBadge";
 import { Title as TitleType } from "../../types";
 import useFetch from "../../hooks/useFetch";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/ui/Spinner/Spinner";
 interface TitleProps {
     isNavBarHidden: boolean
 }
@@ -67,7 +67,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
             setRateActive(_prev => false)
         }
     }
-    const removeRate = async () => {
+    const removeRating = async () => {
         if (!user) {
             navigate('../login')
         }
@@ -138,7 +138,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
                                     <span onClick={() => rateManga(3)}> (3) Very Bad</span>
                                     <span onClick={() => rateManga(2)}> (2) Horrible</span>
                                     <span onClick={() => rateManga(1)}> (1) Appaling</span>
-                                    {userScore > 0 && <span onClick={removeRate}>Remove Rating</span>}
+                                    {userScore > 0 && <span onClick={removeRating}>Remove Rating</span>}
                                 </div>}
                         </button>
                     </section>

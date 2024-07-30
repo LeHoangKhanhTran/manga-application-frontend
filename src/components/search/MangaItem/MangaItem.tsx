@@ -1,9 +1,9 @@
-import { ReactComponent as StarIcon } from "../../assets/star.svg";
-import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg";
-import { ReactComponent as EyeIcon } from "../../assets/eye.svg"
+import { ReactComponent as StarIcon } from "../../../assets/star.svg";
+import { ReactComponent as BookmarkIcon } from "../../../assets/bookmark.svg";
+import { ReactComponent as EyeIcon } from "../../../assets/eye.svg"
 import { Container } from "./MangaItem.style";
-import { transformLongText } from "../../util";
-import StatusBadge from "../StatusBadge/StatusBadge";
+import { transformLongText } from "../../../util";
+import StatusBadge from "../../StatusBadge/StatusBadge";
 
 
 interface MangaItemProps {

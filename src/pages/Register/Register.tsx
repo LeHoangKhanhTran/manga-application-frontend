@@ -1,7 +1,7 @@
 import { Container } from "../Login/Login.style"
 import loginImg from "../../assets/mdex-login-key.png"
-import { Card } from "../../components/Card/AuthCard.style"
-import Input from "../../components/Input/Input"
+import { Card } from "../../components/ui/Card/AuthCard.style"
+import Input from "../../components/ui/Input/Input"
 import { useState, ChangeEvent } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios, { AxiosError, AxiosResponse } from "axios"
@@ -66,7 +66,7 @@ export default function Register() {
             <WordMark/>
           </a>
           <img id="key-img" src={loginImg} alt="login-key-img"/>
-          <Card>
+          <Card style={{marginTop: "25px", maxHeight: "545px"}}>
             <h2>Register</h2>
             <div className="note">
               <span>*</span>

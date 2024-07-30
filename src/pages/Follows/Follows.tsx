@@ -3,8 +3,8 @@ import { ReactComponent as BackArrow } from '../../assets/back-arrow.svg'
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { User } from "../../types";
-import ProfileItem from "../../components/ProfileItem/ProfileItem";
-import Spinner from "../../components/Spinner/Spinner";
+import ProfileItem from "../../components/profile/ProfileItem/ProfileItem";
+import Spinner from "../../components/ui/Spinner/Spinner";
 import useFetch from "../../hooks/useFetch";
 interface FollowsProps {
     isNavBarHidden: boolean

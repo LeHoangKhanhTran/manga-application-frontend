@@ -1,5 +1,5 @@
 import { Container } from "./Random.style";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/ui/Spinner/Spinner";
 interface RandomProps {
     isNavBarHidden: boolean
 }

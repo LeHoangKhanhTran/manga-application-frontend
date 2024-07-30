@@ -1,8 +1,8 @@
 import { Container} from "./Login.style";
-import { Card } from "../../components/Card/AuthCard.style";
+import { Card } from "../../components/ui/Card/AuthCard.style";
 import loginImg from '../../assets/mdex-login-key.png'
 import { ChangeEvent, useState } from "react";
-import Input from "../../components/Input/Input";
+import Input from "../../components/ui/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useUserContext } from "../../App";
@@ -47,7 +47,6 @@ export default function Login() {
       }
      
     } 
-    console.log(error)
     async function handleClick(e : React.MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
       if (loginData['usernameOrEmail'] === null || loginData['usernameOrEmail'].trim().length === 0) {

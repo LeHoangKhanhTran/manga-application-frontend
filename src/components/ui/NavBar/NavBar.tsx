@@ -1,19 +1,19 @@
-import { ReactComponent as HomeIcon } from "../../assets/home.svg"
-import { ReactComponent as FollowIcon } from "../../assets/follow.svg"
-import { ReactComponent as TitleIcon } from "../../assets/titles.svg"
-import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg"
-import { ReactComponent as WordMark } from "../../assets/mangadex-wordmark.svg"
-import { ReactComponent as AboutIcon } from "../../assets/about.svg"
-import { ReactComponent as DiscordIcon } from "../../assets/discord.svg"
-import { ReactComponent as TwitterIcon } from "../../assets/twitter.svg"
-import { ReactComponent as RedditIcon } from "../../assets/reddit.svg"
-import { ReactComponent as StatusIcon } from "../../assets/status.svg"
-import dexChan from "../../assets/support-dex-chan-1.png"
+import { ReactComponent as HomeIcon } from "../../../assets/home.svg"
+import { ReactComponent as FollowIcon } from "../../../assets/follow.svg"
+import { ReactComponent as TitleIcon } from "../../../assets/titles.svg"
+import { ReactComponent as LogoIcon } from "../../../assets/mangadex-logo.svg"
+import { ReactComponent as WordMark } from "../../../assets/mangadex-wordmark.svg"
+import { ReactComponent as AboutIcon } from "../../../assets/about.svg"
+import { ReactComponent as DiscordIcon } from "../../../assets/discord.svg"
+import { ReactComponent as TwitterIcon } from "../../../assets/twitter.svg"
+import { ReactComponent as RedditIcon } from "../../../assets/reddit.svg"
+import { ReactComponent as StatusIcon } from "../../../assets/status.svg"
+import dexChan from "../../../assets/support-dex-chan-1.png"
 import { Container } from "./NavBar.style"
 import { useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import axios, { AxiosResponse } from "axios";
-import config from "../../config";
+import config from "../../../config";
 interface NavBarProps {
     onClose: () => void,
 }

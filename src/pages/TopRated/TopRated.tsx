@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Title } from "../../types";
 import { splitParagraph, transformLongText } from "../../util";
 import useFetch from "../../hooks/useFetch";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/ui/Spinner/Spinner";
 interface TopRatedProps {
     isNavBarHidden: boolean
 }

@@ -4,10 +4,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
-import TopBar from './components/TopBar/TopBar'
-import NavBar from './components/NavBar/NavBar'
-import SearchBar from './components/SearchBar/SearchBar'
-import ProfileBox from './components/ProfileBox/ProfileBox'
+import TopBar from './components/ui/TopBar/TopBar'
+import NavBar from './components/ui/NavBar/NavBar'
+import SearchBar from './components/search/SearchBar/SearchBar'
+import ProfileBox from './components/profile/ProfileBox/ProfileBox'
 import Title from './pages/Title/Title';
 import { createContext } from 'react';
 import axios, { AxiosResponse } from 'axios';

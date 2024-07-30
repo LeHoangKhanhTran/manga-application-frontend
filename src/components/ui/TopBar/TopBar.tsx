@@ -1,11 +1,11 @@
 import { Container } from "./TopBar.style";
-import { ReactComponent as PersonIcon } from "../../assets/person.svg";
-import { ReactComponent as LogoIcon } from "../../assets/mangadex-logo.svg";
-import { ReactComponent as WordMark } from "../../assets/mangadex-wordmark.svg";
-import { ReactComponent as Hamburger } from "../../assets/hamburger.svg";
+import { ReactComponent as PersonIcon } from "../../../assets/person.svg";
+import { ReactComponent as LogoIcon } from "../../../assets/mangadex-logo.svg";
+import { ReactComponent as WordMark } from "../../../assets/mangadex-wordmark.svg";
+import { ReactComponent as Hamburger } from "../../../assets/hamburger.svg";
 import { useEffect, useState } from "react";
-import { useUserContext } from "../../App";
-import catImg from "../../assets/dex-cat.png";
+import { useUserContext } from "../../../App";
+import catImg from "../../../assets/dex-cat.png";
 
 interface TopBarProps {
     isNavBarHidden: boolean,

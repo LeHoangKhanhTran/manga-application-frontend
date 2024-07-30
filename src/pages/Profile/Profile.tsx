@@ -3,7 +3,7 @@ import catImg from "../../assets/dex-cat.png"
 import { useParams } from "react-router-dom"
 import { ReactComponent as BookmarkIcon } from "../../assets/bookmark.svg"
 import { splitParagraph } from "../../util";
-import ProfileItem from "../../components/ProfileItem/ProfileItem"
+import ProfileItem from "../../components/profile/ProfileItem/ProfileItem"
 import { User, Author } from "../../types"
 import useFetch from "../../hooks/useFetch"
 interface ProfileProps {
@@ -92,7 +92,8 @@ export default function Profile({ profileType }: ProfileProps) {
                         <div className="buttons">
                                 <button id="follow-btn" className="disabled">
                                     <BookmarkIcon/>
-                                Follow</button>
+                                    Follow
+                                </button>
                             </div>
                         <dl className="info">
                             <dt>
