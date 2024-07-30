@@ -268,7 +268,7 @@ export const Container = styled.div<ContainerProps>`
 export const LoadingItem = styled.div<ContainerProps>`
     position: relative;
     display: inline-block;
-    margin-right: 10px;
+    flex: 1 0 auto;
     width: ${props => props.isNavBarHidden ? 'calc((100% - 90px) / 10)' : 'calc((100% - 80px) / 9)'};
     height: calc(192px + 5.2rem);
     border-radius: 4px;
