@@ -24,10 +24,10 @@ export const Container = styled.div<StatusProps>`
     padding: ${props => props.showBackground ? "2.5px 6px 0px 6px" : ""};
     width: fit-content;
     border-radius: 4px;
+    max-height: 25px;
 
     .status-light {
         position: relative;
-        top: -2px;
         width: 8px;
         height: 8px;
         border-radius: 50%;

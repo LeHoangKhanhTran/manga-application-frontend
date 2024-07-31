@@ -120,7 +120,7 @@ export default function Title({ isNavBarHidden } : TitleProps) {
                     </section>
                     <section className="buttons">
                         <button className="bookmark-btn" onClick={() => handleFollow(!isFollowed)}>
-                            {isFollowed ? <FollowedIcon /> : <BookmarkIcon/>}
+                            {isFollowed ? <FollowedIcon/> : <BookmarkIcon/>}
                             <span>{isFollowed ? "Unfollow" : "Follow"}</span>
                         </button>
                         <button className="rate-btn" onClick={() => setRateActive(prev => !prev)}>

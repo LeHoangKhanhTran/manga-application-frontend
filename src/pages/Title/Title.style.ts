@@ -235,7 +235,7 @@ export const TitleInfo = styled.div<TitleProps>`
     }
 
     .stats span {
-        transform: translateY(1.9px);
+        transform: translateY(1px);
     }
 
     .summary {
@@ -304,11 +304,11 @@ export const TitleInfo = styled.div<TitleProps>`
 
     @media screen and (max-width: 480px){
         .stats span{
-            font-size: 12px;
+            font-size: 17px;
         }
         .icon {
-            width: 10px;
-            height: 10px;
+            width: 1rem;
+            height: 1rem;
         }
         grid-template-columns: 130px 1fr;
         padding: 0 10px;

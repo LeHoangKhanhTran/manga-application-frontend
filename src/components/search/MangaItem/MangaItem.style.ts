@@ -64,7 +64,7 @@ export const Container = styled(Link)<MangaItemProps>`
 
     .rate > div, .bookmark > div, .visibility > div {
         position: relative;
-        bottom: 4px;
+        bottom: 3.5px;
     }
 
     .item-status {

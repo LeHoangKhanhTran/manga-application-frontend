@@ -93,6 +93,16 @@ interface MainContentProps {
 export const Main = styled.main`
   display: flex;
   color: var(--primary-text-color);
+
+  .shade {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+  }
   
   .skeleton {
     animation: skeleton-animation 1.4s linear infinite alternate;

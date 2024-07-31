@@ -57,7 +57,7 @@ function App(){
 }
 
 function MainRoute() {
-  const [navBarHidden, setNavBarHidden] = useState<boolean>(false);
+  const [navBarHidden, setNavBarHidden] = useState<boolean>(window.innerWidth < 480 ? true: false);
   const [showProfile, setShowProfile] = useState<boolean>(false);
   function setProfile(isShown: boolean) {
     setShowProfile(_prev => isShown)

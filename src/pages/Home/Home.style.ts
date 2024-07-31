@@ -219,8 +219,8 @@ export const Container = styled.div<ContainerProps>`
         }
 
         .arrow-btn {
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
         }
 
         .list-item > img {
@@ -294,7 +294,7 @@ export const LoadingItem = styled.div<ContainerProps>`
         width: calc((100% - 40px) / 5);
         height: 170px;
 
-        .list-item > div {
+        .img-holder {
             top: 220px
         }
     }
@@ -304,19 +304,18 @@ export const LoadingItem = styled.div<ContainerProps>`
     }
 
     @media screen and (max-width: 580px) {
-        .list-item > img {
+        .img-holder {
             height: 200px;
         }
 
-        .list-item > div {
-            top: calc(200px + 7px)
-        }
 
     }
 
     @media screen and (max-width: 490px){
         width: calc((100% - 20px) / 3);
-        height: 160px;
+        .img-holder {
+            height: 160px;
+        }
     }
 `
 

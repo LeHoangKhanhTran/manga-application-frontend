@@ -123,6 +123,15 @@ export const Container = styled.div`
     }
 
     @media screen and (max-width: 780px){
-        width: 250px;
+        padding: 10px;
+        width: 220px;
+
+        .close-btn {
+            right: 0;
+        }
+    }
+    @media screen and (max-width: 480px){
+        padding: 10px 5px;
+        width: 210px;
     }
 `

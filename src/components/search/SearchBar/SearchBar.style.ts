@@ -67,16 +67,6 @@ export const Container = styled.div<SearchBarProps>`
         max-height: calc(100dvh - 5rem);
     }
 
-    .shade {
-        position: fixed; 
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: -1;
-    }
-
     #close-btn {
         position: fixed;
         display: none;
@@ -92,6 +82,8 @@ export const Container = styled.div<SearchBarProps>`
         content: "\\00d7";
         font-size: 2.3rem;
         cursor: pointer;
+        color: white !important;
+        padding-right: 2px;
     }
 
     @media screen and (max-width: 780px){

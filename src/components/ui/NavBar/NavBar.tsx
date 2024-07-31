@@ -62,8 +62,6 @@ export default function NavBar({ onClose }: NavBarProps) {
         if (target) {
             target.style.background = 'var(--primary-btn-color)'
         }
-        
-        
     }, [location.pathname])
     
     const navigate = useNavigate();
@@ -78,72 +76,74 @@ export default function NavBar({ onClose }: NavBarProps) {
             console.log(error);
         }
     }
+    console.log('a')
     return (
             <Container>
-            <header>
-                <a className="icon" href="/">
-                    <LogoIcon/>
-                    <WordMark/>
-                </a>
-            </header>
-            <button className="close-btn" onClick={onClose}></button>
-            <section className="menu-section">
-                <Link className="menu-category menu-option" id="home" to="/">
-                    <HomeIcon/>
-                    <span>Home</span>
-                </Link>
-                <section>
-                    <div className="menu-category">
-                        <FollowIcon/>
-                        <span>Follows</span>
-                    </div>
-                    <div className="menu-list">
-                    <Link to='../user/follows' id="follows" className="menu-option">
+                {window.innerWidth < 480 && <div className="shade" style={{width: "calc(100% - 210px)", right: "0", left: "auto"}} onClick={onClose}></div>}
+                <header>
+                    <a className="icon" href="/">
+                        <LogoIcon/>
+                        <WordMark/>
+                    </a>
+                </header>
+                <button className="close-btn" onClick={onClose}></button>
+                <section className="menu-section">
+                    <Link className="menu-category menu-option" id="home" to="/">
+                        <HomeIcon/>
+                        <span>Home</span>
+                    </Link>
+                    <section>
+                        <div className="menu-category">
+                            <FollowIcon/>
                             <span>Follows</span>
-                        </Link> 
-                    </div>
+                        </div>
+                        <div className="menu-list">
+                        <Link to='../user/follows' id="follows" className="menu-option">
+                                <span>Follows</span>
+                            </Link> 
+                        </div>
+                    </section>
+                    <section>
+                        <div className="menu-category">
+                            <TitleIcon/>
+                            <span>Titles</span>
+                        </div>
+                        <div className="menu-list">
+                            {/* <div className="menu-option">Advanced Search</div> */}
+                            <Link to='../top-rated' className="menu-option" id="top-rated">Top Rated</Link>
+                            <Link className="menu-option" to='/random' onClick={navigateToTitle} id="random">
+                                <span>Random</span>
+                            </Link>
+                        </div>
+                    </section>
+                    <section>
+                        <div className="menu-category">
+                            <AboutIcon/>
+                            <span>MangaDex</span>
+                        </div>
+                        <div className="menu-list">
+                            <div className="menu-option">Support Us</div>
+                            <div className="menu-option">Site Rules</div>
+                            <div className="menu-option">About Us</div>
+                        </div>
+                    </section>
                 </section>
-                <section>
-                    <div className="menu-category">
-                        <TitleIcon/>
-                        <span>Titles</span>
+                <a href="https://namicomi.com/en/org/3Hb7HnWG/mangadex/subscriptions?utm_source=md&utm_campaign=sidebar_affiliate" target="_blank">
+                    <img src={dexChan} width="100%" alt="support-dex-chan" />
+                </a>
+                <hr />
+                <footer>
+                    <div className="media">
+                        <DiscordIcon className="media-item"/>
+                        <TwitterIcon className="media-item"/>
+                        <RedditIcon className="media-item"/>
+                        <StatusIcon className="media-item"/>
                     </div>
-                    <div className="menu-list">
-                        {/* <div className="menu-option">Advanced Search</div> */}
-                        <Link to='../top-rated' className="menu-option" id="top-rated">Top Rated</Link>
-                        <Link className="menu-option" to='/random' onClick={navigateToTitle} id="random">
-                            <span>Random</span>
-                        </Link>
+                    <div className="copyright">
+                        <span>v2024.5.24</span>
+                        <span>© MangaDex 2024</span>
                     </div>
-                </section>
-                <section>
-                    <div className="menu-category">
-                        <AboutIcon/>
-                        <span>MangaDex</span>
-                    </div>
-                    <div className="menu-list">
-                        <div className="menu-option">Support Us</div>
-                        <div className="menu-option">Site Rules</div>
-                        <div className="menu-option">About Us</div>
-                    </div>
-                </section>
-            </section>
-            <a href="https://namicomi.com/en/org/3Hb7HnWG/mangadex/subscriptions?utm_source=md&utm_campaign=sidebar_affiliate" target="_blank">
-                <img src={dexChan} width="100%" alt="support-dex-chan" />
-            </a>
-            <hr />
-            <footer>
-                <div className="media">
-                    <DiscordIcon className="media-item"/>
-                    <TwitterIcon className="media-item"/>
-                    <RedditIcon className="media-item"/>
-                    <StatusIcon className="media-item"/>
-                </div>
-                <div className="copyright">
-                    <span>v2024.5.24</span>
-                    <span>© MangaDex 2024</span>
-                </div>
-            </footer>
+                </footer>
         </Container>
         )
 }
